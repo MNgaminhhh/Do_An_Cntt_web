@@ -1,8 +1,11 @@
 import Image from 'next/image'
-import styles from './page.module.css'
+import classes from './page.module.css'
+import featured from '@/components/Featured/featured'
 
 export default function Home() {
   return (
-    <div>Hello</div>
+    <div className={classes.container}>
+      <featured></featured>
+    </div>
   )
 }

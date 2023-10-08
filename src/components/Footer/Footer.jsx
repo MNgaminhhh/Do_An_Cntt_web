@@ -2,7 +2,8 @@ import React from 'react'
 import classes from '@/components/Footer/footer.module.css'  
 const Footer = () => {
   return (
-    <footer className={classes.footer}>
+    <div className={classes.container}>
+      <footer className={classes.footer}>
       <div className={classes.wrapper}>
         <div className={classes.col}>
           <h2>About the App</h2>
@@ -15,6 +16,8 @@ const Footer = () => {
         </div>
       </div>
     </footer>
+    </div>
+    
   )
 }
 
