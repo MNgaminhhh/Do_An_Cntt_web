@@ -48,27 +48,3 @@
     width: max-content;
     cursor: pointer;
 }
-
-@media screen and (max-width: 1280px) {
-    .title{
-        font-size: 62px;
-    }
-}
-@media screen and (max-width: 1024px) {
-    .title{
-        font-size: 52px;
-    }
-    .imgContainer{
-        display: none;
-    }
-}
-@media screen and (max-width: 768px) {
-    .title{
-        font-size: 42px;
-    }
-}
-@media screen and (max-width: 640px) {
-    .title{
-        font-size: 38px;
-    }
-}
