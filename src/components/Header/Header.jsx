@@ -4,14 +4,13 @@ import logo from '@/img/logo_final.png'
 import classes from '@/components/Header/header.module.css'
 import person from '@/img/logo_final.png'
 import ThemeToggle from '../themeToggle/themeToggle'
-import AuthLink from '../../authLink/authLink'
+import AuthLink from '@/components/authLinks/AuthLinks'
 import Link from 'next/link'
 const Header = () => {
   return (
     <header>
       <div className={classes.container}>
         <div className={classes.wrapper}>
-          
           <div className={classes.right}>
             <Link href='/' className={classes.link}>Home</Link>
             <Link href='/' className={classes.link}>Contact</Link>

@@ -2,12 +2,6 @@
     position: sticky;
     z-index: 999;
     height: 80px;
-    width: 100%;
-    background-color: black;
-    box-shadow: 2px 5px 27px -8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
     top: 0;
     left: 0;
 }
@@ -23,7 +17,7 @@
 
 .left{
     font-size: 36px;
-    color: rgb(26, 180, 26);
+
 }
 
 .img{
@@ -41,7 +35,6 @@
 
 .right .link{
     text-decoration: none;
-    color: white;
 }
 
 .right .link:hover{
