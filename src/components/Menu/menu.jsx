@@ -1,6 +1,7 @@
 import React from 'react'
 import classes from './menu.module.css'
 import MenuPosts from '@/components/menuPosts/menuPosts'
+import MenuCategories from '@/components/MenuCategories/menuCategories'
 const menu = () => {
   return (
     <div className={classes.container}>
