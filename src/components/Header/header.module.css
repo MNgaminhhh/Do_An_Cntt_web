@@ -1,9 +1,5 @@
 .container{
-    position: sticky;
-    z-index: 999;
     height: 80px;
-    top: 0;
-    left: 0;
 }
 
 .wrapper{

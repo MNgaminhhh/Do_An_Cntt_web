@@ -12,8 +12,8 @@ const Header = () => {
       <div className={classes.container}>
         <div className={classes.wrapper}>
           <div className={classes.right}>
-            <Link href='/' className={classes.link}>Home</Link>
-            <Link href='/' className={classes.link}>Contact</Link>
+            <Link href='/' className={classes.link}>Trang Chủ</Link>
+            <Link href='/' className={classes.link}>Liên Hệ</Link>
           </div>
           <div className={classes.left}>
             <h2>
@@ -22,8 +22,8 @@ const Header = () => {
           </div>
           <div className={classes.right}>
             <ThemeToggle></ThemeToggle>
-            <Link href='/' className={classes.link}>Home</Link>
-            <Link href='/' className={classes.link}>Contact</Link>
+            <Link href='/' className={classes.link}>Trang Chủ</Link>
+            <Link href='/' className={classes.link}>Liên Hệ</Link>
             <AuthLink></AuthLink>
           </div>
         </div>
