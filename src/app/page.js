@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import classes from './page.module.css'
-import Featured from '@/components/Featured/featured'
-import CardList from '@/components/CardList/cardList'
-import Menu from '@/components/Menu/menu'
-import CategoryList from '@/components/CategoryList/categoryList'
+import Featured from '@/components/Featured/Featured'
+import CardList from '@/components/CardList/CardList'
+import Menu from '@/components/Menu/Menu'
+import CategoryList from '@/components/CategoryList/CategoryList'
 
 export default function Home() {
   return (

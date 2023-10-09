@@ -1,7 +1,7 @@
 import React from 'react'
 import classes from './blogPage.module.css'
-import CardList from '../../components/cardList/CardList'
-import Menu from '@/components/menu/Menu'
+import CardList from '../../components/CardList/CardList'
+import Menu from '@/components/Menu/Menu'
 const page = () => {
   return (
     <div className={classes.container}>

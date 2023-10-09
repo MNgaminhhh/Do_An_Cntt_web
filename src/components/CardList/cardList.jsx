@@ -1,7 +1,7 @@
 import React from 'react'
 import classes from './cardList.module.css'
 import Card from '../card/Card'
-import Pagination from '@/components/Pagination/pagination'
+import Pagination from '@/components/Pagination/Pagination'
 const cardList = () => {
   return (
     <div className={classes.container}>

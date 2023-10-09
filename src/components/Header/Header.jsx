@@ -3,7 +3,7 @@ import React from 'react'
 import logo from '@/img/logo_final.png'
 import classes from '@/components/Header/header.module.css'
 import person from '@/img/logo_final.png'
-import ThemeToggle from '../themeToggle/themeToggle'
+import ThemeToggle from '../ThemeToggle/ThemeToggle'
 import AuthLink from '@/components/authLinks/AuthLinks'
 import Link from 'next/link'
 const Header = () => {

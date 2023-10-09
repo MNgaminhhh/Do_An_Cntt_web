@@ -1,7 +1,7 @@
 import React from 'react'
 import classes from './singlePage.module.css'
 import Image from 'next/image'
-import Menu from '@/components/menu/Menu'
+import Menu from '@/components/Menu/Menu'
 const page = () => {
   return (
     <div className={classes.container}>
