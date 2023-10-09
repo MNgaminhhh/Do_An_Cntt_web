@@ -1,29 +1,27 @@
-import Link from 'next/link'
-import React from 'react'
+"use client"
+import React, { useEffect, useState } from 'react'
 import classes from './menuCategories.module.css'
-const menuCategories = () => {
+import Link from 'next/link'
+import Image from 'next/image'
+
+const MenuCategories = () => {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:3000/api/category')
+      .then(response => response.json())
+      .then(data => setCategories(data));
+  }, []);
+
   return (
     <div className={classes.categoryList}>
-        <Link href="/blog?cat=style" className={`${classes.categoryItem} ${classes.style}`}>
-          Style
+      {categories.map((category) => (
+        <Link key={category.category_ID} href={`/blog?cat=${category.category_Name}`} className={`${classes.categoryItem} ${classes.bg}`}>
+          {category.category_Name}
         </Link>
-        <Link href="/blog?cat=style" className={`${classes.categoryItem} ${classes.travel}`}>
-          Travel
-        </Link>
-        <Link href="/blog?cat=style" className={`${classes.categoryItem} ${classes.culture}`}>
-          Culture
-        </Link>
-        <Link href="/blog?cat=style" className={`${classes.categoryItem} ${classes.fashion}`}>
-          Fashion
-        </Link>
-        <Link href="/blog?cat=style" className={`${classes.categoryItem} ${classes.food}`}>
-          Food
-        </Link>
-        <Link href="/blog?cat=style" className={`${classes.categoryItem} ${classes.coding}`}>
-          Coding
-        </Link>
-      </div>
+      ))}
+    </div>
   )
 }
 
-export default menuCategories
+export default MenuCategories

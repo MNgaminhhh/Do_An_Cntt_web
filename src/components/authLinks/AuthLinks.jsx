@@ -2,7 +2,7 @@ import React from 'react'
 
 const AuthLinks = () => {
   return (
-    <div>AuthLinks</div>
+    <div>login</div>
   )
 }
 
