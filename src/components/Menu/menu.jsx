@@ -5,16 +5,15 @@ import MenuCategories from '@/components/MenuCategories/menuCategories'
 const menu = () => {
   return (
     <div className={classes.container}>
-      <h2 className={classes.subtitle}>{"What's hot"}</h2>
-      <h1 className={classes.title}>Most Popular</h1>
+      <h2 className={classes.subtitle}>{"Có gì mới ?"}</h2>
+      <h1 className={classes.title}>Tin Tức Mới</h1>
       <MenuPosts withImage={false}></MenuPosts>
       {/* /3layout */}
-      <h2 className={classes.subtitle}>Discover by topic</h2>
-      <h1 className={classes.title}>Categories</h1>
+      <h2 className={classes.subtitle}>Khám phá</h2>
+      <h1 className={classes.title}>Chủ Đề</h1>
       <MenuCategories></MenuCategories>
       {/* 2layout */}
-      <h2 className={classes.subtitle}>{"Chosen by the editor"}</h2>
-      <h1 className={classes.title}>Editors Pick</h1>
+      <h1 className={classes.title}>Tin Tức</h1>
       <MenuPosts withImage={true}></MenuPosts>
     </div>
   )
