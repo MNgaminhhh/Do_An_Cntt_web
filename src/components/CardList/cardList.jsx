@@ -5,7 +5,7 @@ import Pagination from '@/components/Pagination/pagination'
 const cardList = () => {
   return (
     <div className={classes.container}>
-      <h1 className={classes.title}>Recent Posts</h1>
+      <h1 className={classes.title}>Bài Viết Gần Đây</h1>
       <div className={classes.posts}>
         <Card></Card>
         <Card></Card>

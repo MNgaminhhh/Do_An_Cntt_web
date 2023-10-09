@@ -4,10 +4,11 @@
 }
 
 .button{
-    width: 100px;
+    width: 150px;
     border: none;
+    font-size: 14px;
     padding: 17px;
-    background-color: crimson;
+    background-color: rgb(148, 37, 59);
     color: white;
     cursor: pointer;
 }
