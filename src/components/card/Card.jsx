@@ -2,7 +2,8 @@ import React from 'react'
 import classes from './card.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
-const Card = () => {
+
+const Card = ({ post }) => {
   return (
     <div className={classes.container}>
         <div className={classes.imageContainer}>
@@ -10,17 +11,17 @@ const Card = () => {
         </div>
         <div className={classes.textContainer}>
             <div className={classes.detail}>
-                <span className={classes.date}>11.02.2023 - </span>
-                <span className={classes.category}>CULTURE</span>
+                <span className={classes.date}>{post.postDate} - </span>
+                <span className={classes.category}>{post.category_Name}</span>
             </div>
-            <Link href="/posts/1">
-              <h1>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </h1>
+            <Link href={`/posts/${post.post_ID}`}>
+              <h1>{post.title}</h1>
             </Link>
-            <Link href="/posts/1">
-            <p className={classes.desc}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam numquam tenetur similique harum eaque cum recusandae molestias earum consectetur soluta assumenda nemo aliquam reiciendis sapiente ullam dolore, placeat labore maxime?</p>
+            <Link href={`/posts/${post.post_ID}`}>
+            <p className={classes.desc}>{post.content}</p>
             </Link>
             
-            <Link href="/posts/1" className={classes.link}>Read More</Link>
+            <Link href={`/posts/${post.post_ID}`} className={classes.link}>Read More</Link>
         </div>
     </div>
   )

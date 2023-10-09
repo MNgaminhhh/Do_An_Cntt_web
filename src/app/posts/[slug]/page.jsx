@@ -27,13 +27,11 @@ const page = () => {
           <div className={classes.description}>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos sint inventore aut quasi perferendis iste in beatae ut eum eveniet, fuga cumque, cum recusandae? Consectetur modi distinctio magnam voluptate. Sunt.</p>
             <p>
-            <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit</h5>
+              <span>Lorem ipsum dolor sit amet consectetur adipisicing elit</span>
             </p>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos sint inventore aut quasi perferendis iste in beatae ut eum eveniet, fuga cumque, cum recusandae? Consectetur modi distinctio magnam voluptate. Sunt.</p>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos sint inventore aut quasi perferendis iste in beatae ut eum eveniet, fuga cumque, cum recusandae? Consectetur modi distinctio magnam voluptate. Sunt.</p>
 
-          </div>
-          <div className={classes.comment}>
           </div>
         </div>
           <Menu></Menu>
