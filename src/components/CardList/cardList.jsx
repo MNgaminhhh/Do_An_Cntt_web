@@ -15,7 +15,7 @@ const Page = () => {
       .then(response => response.json())
       .then(data => setCategories(data));
 
-    fetch('http://localhost:3000/api/post')
+    fetch('http://localhost:3000/api/posts')
       .then(response => response.json())
       .then(data => setPosts(data));
   }, []);
