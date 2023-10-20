@@ -7,7 +7,7 @@ const menuPosts = ({withImage}) => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/post')
+    fetch('http://localhost:3000/api/posts')
       .then(response => response.json())
       .then(data => setPosts(data));
   }, []);
