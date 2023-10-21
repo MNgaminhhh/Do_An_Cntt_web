@@ -43,9 +43,11 @@
 }
 
 .button{
-    padding: 16px 20px;
+    width: 150px;
     border: none;
-    border-radius: 5px;
-    width: max-content;
+    font-size: 14px;
+    padding: 17px;
+    background-color: rgb(148, 37, 59);
+    color: white;
     cursor: pointer;
 }

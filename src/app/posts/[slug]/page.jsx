@@ -24,7 +24,7 @@ const Page = () => {
         try {
           const response = await fetch(`http://localhost:3000/api/posts/${postId}`);
           if (!response.ok) {
-            throw new Error('Post not found');
+            throw new Error('Không tìm thấy bài đăng !');
           }
           const data = await response.json();
           setPost(data);

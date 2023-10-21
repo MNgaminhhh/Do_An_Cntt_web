@@ -1,5 +1,6 @@
 "use client"
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link'; // Import thư viện Link
 import classes from './featured.module.css';
 import Image from 'next/image';
 
@@ -32,8 +33,10 @@ const Featured = () => {
           </div>
           <div className={classes.textContainer}>
             <h1 className={classes.postTitle}>{featuredPost.title}</h1>
-            <p className={classes.postDesc}>{featuredPost.description}</p>
-            <button className={classes.button}>Read More</button>
+            <p className={classes.postDesc}>{featuredPost.content}</p>
+            <Link href={`/posts/${featuredPost.post_ID}`}>
+              <button className={classes.button}>Đọc Thêm</button>
+            </Link>
           </div>
         </div>
       )}

@@ -58,3 +58,17 @@
 .button_desc {
     text-align: center;
 }
+.title{
+    text-align: center;
+    padding: 10px 100px;
+}
+
+.error {
+    color: #ff0000;
+    font-weight: bold;
+    text-align: center;
+    font-size: 25px;
+    background: #c7c7c7;
+    padding: 10px 40px;
+    margin: 10px;
+}
