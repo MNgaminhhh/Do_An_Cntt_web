@@ -5,20 +5,50 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
+}
   
-  .titleInput {
+.editTab {
+    min-width: 100%;
+}
+
+.tabs {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.tabButton {
+    flex: 1;
+    padding: 10px 40px;
+    font-size: 20px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: var(--textColor);
+    border-bottom: 2px solid transparent;
+    transition: border-bottom 0.3s;
+}
+
+.tabButton:hover {
+    border-bottom: 2px solid #1a8917; 
+}
+
+.activeTab {
+    border-bottom: 2px solid #1a8917;
+}
+
+.titleInput {
     width: 100%;
     padding: 15px;
-    font-size: 20px;
+    font-size: 24px;
     border: 2px solid #ccc;
     border-radius: 5px;
     margin-bottom: 20px;
     outline: none;
     background: var(--softBg);
-  }
-  
-  .editor {
+    color: var(--textColor);
+}
+
+.editor {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -26,10 +56,9 @@
     position: relative;
     width: 100%;
     max-width: 800px;
-  }
-  
-  .button,
-  .addButton {
+}
+
+.button,.addButton {
     width: 36px;
     height: 36px;
     border-radius: 50%;
@@ -42,16 +71,15 @@
     justify-content: center;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
-  }
-  
-  .button:hover,
-  .addButton:hover {
+}
+
+.button:hover,.addButton:hover {
     background-color: #1a8917;
     color: white;
     transform: scale(1.1);
-  }
-  
-  .add {
+}
+
+.add {
     display: flex;
     background: var(--softBg);
     color: var(--textColor);
@@ -62,29 +90,31 @@
     padding: 10px;
     transition: transform 0.2s;
     margin-bottom: 20px;
-  }
-  
-  .textArea {
+}
+
+.textArea {
     width: 100%;
     border: 2px solid #ccc;
     border-radius: 5px;
     padding: 15px;
-    font-size: 16px;
+    font-size: 18px;
     background: var(--softBg);
     color: var(--textColor);
-  }
-  .comboBoxCategory{
+}
+
+.comboBoxCategory {
     margin-top: 20px;
-  }
-  .label {
+}
+
+.label {
     font-size: 24px;
     font-weight: 500;
-  }
-  
-  .select {
+}
+
+.select {
     margin-top: 10px;
-    padding: 10px; 
-    font-size: 20px; 
+    padding: 15px;
+    font-size: 20px;
     border: 2px solid #ccc;
     background: var(--bg);
     color: var(--textColor);
@@ -93,20 +123,20 @@
     max-width: 400px;
     outline: none;
     margin-bottom: 20px;
-  }
- 
-  .publish {
+}
+
+.publish {
     padding: 15px 20px;
     background-color: #1a8917;
     color: white;
     border: none;
     border-radius: 20px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 24px;
     transition: background-color 0.3s, transform 0.2s;
-  }
-  
-  .publish:hover {
+}
+
+.publish:hover {
     background-color: #1a5f17;
     transform: scale(1.05);
-  }
+}
