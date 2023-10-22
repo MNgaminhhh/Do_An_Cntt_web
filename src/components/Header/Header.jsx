@@ -22,8 +22,6 @@ const Header = () => {
           </div>
           <div className={classes.right}>
             <ThemeToggle></ThemeToggle>
-            <Link href='/' className={classes.link}>Trang Chủ</Link>
-            <Link href='/' className={classes.link}>Liên Hệ</Link>
             <AuthLink></AuthLink>
           </div>
         </div>

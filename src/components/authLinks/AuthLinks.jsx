@@ -12,13 +12,13 @@ const AuthLinks = () => {
     <>
       {status === "authenticated" ? (
         <>
-          <Link href="/write">Write</Link>
+          <Link href="/write">Bài Viết</Link>
           <span className={styles.link} onClick={() => signOut()}>
-            Logout
+            Đăng Xuất
           </span>
         </>
       ) : (
-        <Link href="/login">Login</Link>
+        <Link href="/login">Đăng Nhập</Link>
       )}
       <div className={styles.burger} onClick={() => setOpen(!open)}>
         <div className={styles.line}></div>
@@ -32,13 +32,13 @@ const AuthLinks = () => {
           <Link href="/">Contact</Link>
           {status === "authenticated" ? (
             <>
-              <Link href="/write">Write</Link>
+              <Link href="/write">Bài Đăng</Link>
               <span className={styles.link} onClick={() => signOut()}>
-                Logout
+                Đăng Xuất
               </span>
             </>
           ) : (
-            <Link href="/login">Login</Link>
+            <Link href="/login">Đăng Nhập</Link>
           )}
         </div>
       )}
