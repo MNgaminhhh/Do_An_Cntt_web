@@ -6,9 +6,9 @@ import Image from 'next/image'
 import Card from '../card/Card'
 import Pagination from '@/components/Pagination/Pagination'
 
-const Page = () => {
+const Page = ({ posts }) => {
   const [categories, setCategories] = useState([]);
-  const [posts, setPosts] = useState([]);
+  const [allPosts, setAllPosts] = useState([]);
 
   useEffect(() => {
     fetch('http://localhost:3000/api/category')
@@ -17,14 +17,18 @@ const Page = () => {
 
     fetch('http://localhost:3000/api/posts')
       .then(response => response.json())
-      .then(data => setPosts(data));
+      .then(data => setAllPosts(data));
   }, []);
+
+   // In ra giá trị của posts
 
   return (
     <div className={classes.container}>
       <h1 className={classes.title}>Bài Viết Gần Đây</h1>
       <div className={classes.posts}>
-        {posts.map((post) => (
+        {posts ? posts.map((post) => (
+          <Card key={post.post_ID} post={post}></Card>
+        )) : allPosts.map((post) => (
           <Card key={post.post_ID} post={post}></Card>
         ))}
       </div>
@@ -32,5 +36,4 @@ const Page = () => {
     </div>
   )
 }
-
 export default Page
