@@ -25,7 +25,6 @@ const LoginPage = () => {
         router.push("/");
       } else {
         setError("Sai tài khoản hoặc mật khẩu.");
-        console.error("Authentication failed");
       }
     } catch (error) {
       console.error("Error authenticating:", error);

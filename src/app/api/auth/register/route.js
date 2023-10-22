@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import util from "util";
 import { query } from "@/lib/db";
-import bcrypt from "bcrypt";
 
 export const POST = async (req) => {
     const admin = await req.json();
@@ -14,13 +13,14 @@ export const POST = async (req) => {
             return new NextResponse(
                 JSON.stringify({ error: "Tên đăng nhập đã tồn tại !" }),
                 { status: 400, headers: { 'Content-Type': 'application/json' } }
-              );
+            );
         }
-        const hashedPassword = await bcrypt.hash(admin.password, 10);
+
         const results = await query({
             query: "INSERT INTO admin (username, password) VALUES (?, ?)",
-            values: [admin.username, hashedPassword]
+            values: [admin.username, admin.password]
         });
+
         if (results.affectedRows === 1) {
             return new NextResponse(admin, { status: 201 });
         } else {
