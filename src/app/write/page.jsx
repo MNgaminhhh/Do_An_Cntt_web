@@ -2,16 +2,18 @@
 import React, { useState, useEffect } from 'react';
 import classes from './writepage.module.css';
 import Image from 'next/image';
-import ReactQuill from 'react-quill';
+import dynamic from 'next/dynamic'; // Sử dụng dynamic để tải mã Quill chỉ ở phía máy khách
 import 'react-quill/dist/quill.bubble.css';
+
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 const WritePage = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [categoryName, setCategoryName] = useState('');
   const [categories, setCategories] = useState([]);
-  const [activeTab, setActiveTab] = useState('edit'); // Sử dụng 'edit' hoặc 'category' để chọn tab mặc định
-
+  const [activeTab, setActiveTab] = useState('edit');
+  const [error, setError] = useState('');
   useEffect(() => {
     fetch('http://localhost:3000/api/category')
       .then((response) => response.json())
@@ -22,9 +24,33 @@ const WritePage = () => {
     // Gửi thông tin bài viết lên server ở đây, bao gồm title, content, categoryID, adminID, và postDate.
   };
 
-  const handleCreateCategory = () => {
-    // Gửi thông tin danh mục mới lên server ở đây, bao gồm categoryName.
+  const handleCreateCategory = async (e) => {
+    e.preventDefault();
+    if (categoryName.trim() === '') {
+      setError('Tên danh mục không được để trống');
+      return;
+    }
+    try {
+      const response = await fetch('http://localhost:3000/api/category', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ categoryName }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      setError(data.message);
+      setCategoryName('');
+    } catch (error) {
+      console.error('There has been a problem with your fetch operation:', error);
+    }
   };
+
 
   return (
     <div className={classes.container}>
@@ -96,6 +122,7 @@ const WritePage = () => {
 
       {activeTab === 'category' && (
         <div className={classes.categoryTab}>
+          {error && <p className={classes.error}>{error}</p>}
           <input
             type="text"
             name="categoryName"

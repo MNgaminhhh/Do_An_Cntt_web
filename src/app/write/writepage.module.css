@@ -140,3 +140,12 @@
     background-color: #1a5f17;
     transform: scale(1.05);
 }
+.error {
+    color: #ff0000;
+    font-weight: bold;
+    text-align: center;
+    font-size: 25px;
+    background: #c7c7c7;
+    padding: 10px 40px;
+    margin: 10px;
+}

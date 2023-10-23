@@ -23,7 +23,7 @@ const BlogCategoryPage = () => {
     <div className={classes.container}>
       <h1 className={classes.title}>{cat || 'Blog'}</h1>
       <div className={classes.content}>
-        {categoryPosts.length > 0 ? (
+        {cat ? (
           <CardList posts={categoryPosts} />
         ) : (
           <CardList />
