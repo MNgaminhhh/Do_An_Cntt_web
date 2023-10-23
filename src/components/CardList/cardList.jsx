@@ -19,9 +19,6 @@ const Page = ({ posts }) => {
       .then(response => response.json())
       .then(data => setAllPosts(data));
   }, []);
-
-   // In ra giá trị của posts
-
   return (
     <div className={classes.container}>
       <h1 className={classes.title}>Bài Viết Gần Đây</h1>

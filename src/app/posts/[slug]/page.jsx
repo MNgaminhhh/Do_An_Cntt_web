@@ -1,17 +1,19 @@
 "use client"
 import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation'; // Importing useRouter from 'next/router'
+import { useRouter } from 'next/navigation';
 import classes from './singlePage.module.css';
 import Image from 'next/image';
 import Menu from '@/components/Menu/Menu';
+import { useSession } from 'next-auth/react';
 
 const Page = () => {
   const router = useRouter();
   const [postId, setPostId] = useState(null);
   const [post, setPost] = useState(null);
 
+  const { data: session } = useSession();
+
   useEffect(() => {
-    // Extract postId from the URL using regular expression
     const postIdFromPath = window.location.pathname.match(/\/posts\/(\d+)/);
     if (postIdFromPath) {
       const postId = postIdFromPath[1];
@@ -35,14 +37,51 @@ const Page = () => {
     };
 
     fetchPost();
-  }, [postId]); // Update when postId changes
+  }, [postId]);
+  const handleEdit = () => {
 
+  };
+  
+  const handleDelete = async () => {
+    try {
+      const response = await fetch(`http://localhost:3000/api/posts/${postId}`, {
+        method: 'DELETE',
+      });
+  
+      if (response.ok) {
+        alert('Bài viết đã được xóa thành công');
+        router.push('/');
+      } else {
+        console.error('Lỗi xóa bài viết:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Lỗi khi gọi API xóa bài viết:', error);
+    }
+  };
+  
+  
   if (!post) {
     return <div>Loading...</div>;
   }
 
   return (
     <div className={classes.container}>
+      {session ? (
+        <div>
+          <button
+            className={classes.editButton}
+            onClick={handleEdit}
+          >
+            Chỉnh sửa bài viết
+          </button>
+          <button
+            className={classes.deleteButton}
+            onClick={handleDelete}
+          >
+            Xóa bài viết
+          </button>
+        </div>
+      ) : null}
       <div className={classes.infoContainer}>
         <div className={classes.textContainer}>
           <h1 className={classes.title}>{post.title}</h1>
@@ -66,11 +105,11 @@ const Page = () => {
             <p>{post.content}</p>
           </div>
         </div>
-          <Menu></Menu>
+        
+        <Menu></Menu>
       </div>
     </div>
   );
-  
 };
 
 export default Page;

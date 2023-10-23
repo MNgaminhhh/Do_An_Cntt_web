@@ -2,9 +2,10 @@
 import React, { useState, useEffect } from 'react';
 import classes from './writepage.module.css';
 import Image from 'next/image';
-import dynamic from 'next/dynamic'; // Sử dụng dynamic để tải mã Quill chỉ ở phía máy khách
+import dynamic from 'next/dynamic';
 import 'react-quill/dist/quill.bubble.css';
-
+import Link from 'next/link';
+import { useSession } from "next-auth/react";
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 const WritePage = () => {
@@ -14,6 +15,8 @@ const WritePage = () => {
   const [categories, setCategories] = useState([]);
   const [activeTab, setActiveTab] = useState('edit');
   const [error, setError] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const { data: session } = useSession();
   useEffect(() => {
     fetch('http://localhost:3000/api/category')
       .then((response) => response.json())
@@ -21,8 +24,42 @@ const WritePage = () => {
   }, []);
 
   const handlePublish = () => {
-    // Gửi thông tin bài viết lên server ở đây, bao gồm title, content, categoryID, adminID, và postDate.
   };
+  const handleDeleteCategory = async () => {
+    if (!selectedCategory) {
+        return;
+    }
+
+    // Sử dụng hộp thoại xác nhận để đảm bảo người dùng muốn xóa
+    const isConfirmed = window.confirm(`Bạn có chắc chắn muốn xóa danh mục "${selectedCategory}" không?`);
+    
+    if (!isConfirmed) {
+        return;
+    }
+
+    try {
+        const response = await fetch('http://localhost:3000/api/category', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ categoryName: selectedCategory }),
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+        setError(data.message);
+        setSelectedCategory('');
+
+        // Thông báo khi xóa thành công
+        alert(`Danh mục "${selectedCategory}" đã được xóa thành công.`);
+    } catch (error) {
+        console.error('There has been a problem with your fetch operation:', error);
+    }
+};
 
   const handleCreateCategory = async (e) => {
     e.preventDefault();
@@ -51,7 +88,14 @@ const WritePage = () => {
     }
   };
 
-
+  if (!session) {
+    return (
+      <div>
+        <p>Bạn cần phải đăng nhập để thực hiện chức năng này.</p>
+        <Link href="/login">Đăng Nhập</Link>
+      </div>
+    );
+  }
   return (
     <div className={classes.container}>
       <div className={classes.tabs}>
@@ -70,7 +114,7 @@ const WritePage = () => {
       </div>
 
       {activeTab === 'edit' && (
-        <div className={classes.editTab}>
+         <div className={classes.editTab}>
           <input
             type="text"
             name="title"
@@ -134,10 +178,30 @@ const WritePage = () => {
           <button className={classes.publish} onClick={handleCreateCategory}>
             Tạo Danh Mục
           </button>
+
+          <div className={classes.comboBoxCategory}>
+            <label htmlFor="category" className={classes.label}>Danh mục:  </label>
+            <select
+              id="category"
+              name="category"
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              className={classes.select}
+            >
+              <option value="">-- Chọn danh mục để xóa --</option>
+              {categories.map((category) => (
+                <option key={category.category_ID} value={category.category_Name}>
+                  {category.category_Name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <button className={classes.publish} onClick={handleDeleteCategory}>
+            Xóa Danh Mục
+          </button>
         </div>
       )}
 
-      
     </div>
   );
 };
