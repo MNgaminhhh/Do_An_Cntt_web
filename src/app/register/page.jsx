@@ -4,7 +4,7 @@ import classes from "./register.module.css";
 import Link from "next/link";
 
 const RegisterForm = () => {
-    const [user, setUser] = useState({ username: "", password: "", confirmPassword: "" });
+    const [user, setUser] = useState({ username: "", password: "", confirmPassword: "", fullname: "" });
     const [error, setError] = useState("");
 
     const handleSubmit = async (e) => {
@@ -41,6 +41,10 @@ const RegisterForm = () => {
                     <h1 className={classes.title}>Đăng Ký Tài Khoản</h1>
                     <form className={classes.form} onSubmit={handleSubmit}>
                         {error && <div className={classes.error}>{error}</div>}
+                        <div className={classes.fullname}>
+                            <label className={classes.label_form}>Họ và Tên</label>
+                            <input className={classes.input_form} type="text" name="fullname" value={user.fullname} onChange={e => setUser({ ...user, fullname: e.target.value })} required placeholder="Full Name" autoComplete="off" />
+                        </div>
                         <div className={classes.username}>
                             <label className={classes.label_form}>Tên Tài Khoản</label>
                             <input className={classes.input_form} type="text" name="username" value={user.username} onChange={e => setUser({ ...user, username: e.target.value })} required placeholder="Username" autoComplete="off" />

@@ -17,8 +17,8 @@ export const POST = async (req) => {
         }
 
         const results = await query({
-            query: "INSERT INTO admin (username, password) VALUES (?, ?)",
-            values: [admin.username, admin.password]
+            query: "INSERT INTO admin (username, password, full_name) VALUES (?, ?, ?)",
+            values: [admin.username, admin.password, admin.fullname]
         });
 
         if (results.affectedRows === 1) {

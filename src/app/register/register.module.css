@@ -15,7 +15,7 @@
     border-radius: 10px;
 }
 
-.form_warper,.username,.password,.confirmPassword {
+.form_warper,.fullname,.username,.password,.confirmPassword {
     display: flex;
     flex-direction: column;
     gap: 10px;
