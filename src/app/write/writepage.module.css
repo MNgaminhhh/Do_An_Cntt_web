@@ -58,7 +58,7 @@
     max-width: 800px;
 }
 
-.button,.addButton {
+.button {
     width: 36px;
     height: 36px;
     border-radius: 50%;
@@ -73,7 +73,7 @@
     transition: background-color 0.3s, transform 0.2s;
 }
 
-.button:hover,.addButton:hover {
+.button:hover {
     background-color: #1a8917;
     color: white;
     transform: scale(1.1);
@@ -148,4 +148,70 @@
     background: #c7c7c7;
     padding: 10px 40px;
     margin: 10px;
+}
+.imageUploadForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.imageInput {
+    display: none;
+}
+
+.addButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    height: 500px;
+    border-radius: 10px;
+    border: 1px solid #000000; 
+
+}
+
+.addButton:hover {
+    background-color: #1f1f1f;
+    color: #ccc;
+    transition: ease-in-out 0.2s;
+}
+
+.uploadButton {
+    margin-top: 16px;
+    background-color: #4CAF50; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.uploadButton:hover {
+    background-color: #45a049;
+}
+  
+
+.uploadedImageContainer {
+    display: flex;
+    justify-content: center;
+    object-fit: cover;
+    border: 2px solid red;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+.imageLabel{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+.labelSpan{
+    font-weight: 300;
+    font-size: 25px;
+}
+.labelImage{
+    margin-top: 10px;
+    width: 50%;
 }
