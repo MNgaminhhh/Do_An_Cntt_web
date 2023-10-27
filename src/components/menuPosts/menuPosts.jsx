@@ -5,8 +5,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 const menuPosts = ({withImage}) => {
   const [posts, setPosts] = useState([]);
-
+  const [categories, setCategories] = useState([]);
   useEffect(() => {
+    fetch('http://localhost:3000/api/category')
+      .then((response) => response.json())
+      .then((data) => setCategories(data));
     fetch('http://localhost:3000/api/posts')
       .then(response => response.json())
       .then(data => setPosts(data));

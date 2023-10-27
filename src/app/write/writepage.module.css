@@ -81,6 +81,7 @@
 
 .add {
     display: flex;
+    flex-direction: column;
     background: var(--softBg);
     color: var(--textColor);
     gap: 20px;
@@ -196,6 +197,7 @@
 .uploadedImageContainer {
     display: flex;
     justify-content: center;
+    align-items: center;
     object-fit: cover;
     border: 2px solid red;
     border-radius: 10px;

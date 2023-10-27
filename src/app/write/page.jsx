@@ -8,6 +8,7 @@ import axios from 'axios';
 import 'react-quill/dist/quill.bubble.css';
 import { useSession } from "next-auth/react";
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
+
 const WritePage = () => {
   const [image, setImage] = useState(null);
   const [title, setTitle] = useState('');
@@ -20,67 +21,65 @@ const WritePage = () => {
   const [file, setFile] = useState(null);
   const [filename, setFilename] = useState('');
   const [imageUrl, setImageUrl] = useState('');
-  const { data: session } = useSession();
+  const { data: session} = useSession();
+
+
   useEffect(() => {
     fetch('http://localhost:3000/api/category')
       .then((response) => response.json())
       .then((data) => setCategories(data));
   }, []);
-  const handlePublish = async () => {
-    if (image) {
-      try {
-        const formData = new FormData();
-        formData.append('file', image);
   
-        // Sử dụng API hoặc thư viện tải lên hình ảnh ở đây
-  
-        // Tạo đối tượng dữ liệu bài viết
-        const postData = {
+  const handleSubmitPosts = async (e) => {
+    e.preventDefault();
+    console.log(new Date())
+    console.log(selectedCategory)
+    console.log(session.id)
+    try {
+      const response = await fetch('http://localhost:3000/api/posts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
           title,
           content,
-          categoryId: categoryName, // hoặc là categoryName, tùy thuộc vào cách bạn xử lý
+          img: imageUrl,
+          postDate: new Date(),
+          categoryId: selectedCategory,
           adminId: session.id,
-        };
-  
-        // Gửi dữ liệu bài viết đến API
-        const response = await fetch('http://localhost:3000/api/post', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(postData),
-        });
-  
-        if (response.ok) {
-          // Thực hiện xử lý sau khi đăng bài viết thành công
-          console.log('Bài viết đã được đăng thành công');
-        } else {
-          console.error('Lỗi khi đăng bài viết');
-        }
-      } catch (error) {
-        console.error('Lỗi khi tải lên hình ảnh hoặc đăng bài viết:', error);
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
       }
+
+      const data = await response.json();
+      setError(data.message);
+      setTitle('');
+      setContent('');
+      setSelectedCategory('');
+      setImageUrl('');
+    } catch (error) {
+      console.error('There has been a problem with your fetch operation:', error);
     }
   };
-  
 
+  //image upload in cloudinary
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
     setFilename(event.target.files[0].name);
   };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     if (!file) {
       alert('Vui lòng chọn một file để tải lên.');
       return;
     }
-
     const formData = new FormData();
     formData.append('file', file);
     formData.append('upload_preset', 'DoAnCNTT');
-
     try {
       const response = await axios.post(
         'https://api.cloudinary.com/v1_1/dts365s0l/image/upload',
@@ -97,7 +96,6 @@ const WritePage = () => {
       console.error(error);
     }
   };
-
 
   // category 
   const handleDeleteCategory = async () => {
@@ -162,6 +160,8 @@ const WritePage = () => {
       </div>
     );
   }
+
+  
   return (
     <div className={classes.container}>
       <div className={classes.tabs}>
@@ -181,16 +181,15 @@ const WritePage = () => {
 
       {activeTab === 'edit' && (
         <div className={classes.editTab}>
-          <input
-            type="text"
-            name="title"
-            placeholder="Tiêu Đề"
-            className={classes.titleInput}
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-           <div className={classes.add}>
-              <form onSubmit={handleSubmit} className={classes.imageUploadForm}>
+            <input
+              type="text"
+              name="title"
+              placeholder="Tiêu Đề"
+              className={classes.titleInput}
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+            <div className={classes.add}>
                 <label htmlFor="imageUpload" className={classes.addButton}>
                   {imageUrl ? (
                     <Image src={imageUrl} alt="Uploaded" width={500} height={500} className={classes.uploadedImageContainer} />
@@ -208,39 +207,51 @@ const WritePage = () => {
                   className={classes.imageInput}
                   onChange={handleFileChange}
                 />
-                <button type="submit" className={classes.uploadButton}>
-                  Upload
+                <button 
+                  type="submit" 
+                  className={classes.uploadButton}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (!file) {
+                      alert('Vui lòng chọn một file trước khi nhấn nút "Tải Lên".');
+                      return;
+                    }
+                    handleSubmit(e);
+                  }}
+                >
+                  Tải Lên
                 </button>
-              </form>
-            </div>
+              </div>
 
-          <ReactQuill
-            className={classes.textArea}
-            theme="bubble"
-            value={content}
-            onChange={setContent}
-            placeholder="Nội dung..."
-          />
-          <div className={classes.comboBoxCategory}>
-            <label htmlFor="category" className={classes.label}>Danh mục:  </label>
-            <select
-              id="category"
-              name="category"
-              value={categoryName}
-              onChange={(e) => setCategoryName(e.target.value)}
-              className={classes.select}
-            >
-              <option value="">-- Chọn danh mục --</option>
-              {categories.map((category) => (
-                <option key={category.category_ID} value={category.category_Name}>
-                  {category.category_Name}
-                </option>
-              ))}
-            </select>
-          </div>
-          <button className={classes.publish} onClick={handleSubmit}>
-            Đăng Bài
-          </button>
+            <ReactQuill
+              className={classes.textArea}
+              theme="bubble"
+              value={content}
+              onChange={setContent}
+              placeholder="Nội dung..."
+            />
+            <div className={classes.comboBoxCategory}>
+              <label htmlFor="category" className={classes.label}>Danh mục:  </label>
+              <select
+                id="category"
+                name="category"
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className={classes.select}
+              >
+                <option value="">-- Chọn danh mục --</option>
+                {categories.map((category) => (
+                  <option key={category.category_ID} value={category.category_ID}>
+                    {category.category_Name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <button className={classes.publish} onClick={(e) => {
+              handleSubmitPosts(e)
+            }}>
+              Đăng Bài
+            </button>
         </div>
       )}
 

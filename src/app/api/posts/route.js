@@ -30,17 +30,17 @@ export async function GET(request) {
 export async function POST(request) {
     const requestData = await request.json();
 
-    const { title, content, categoryId, adminId, postDate } = requestData;
+    const { title, content, img, categoryId, adminId, postDate } = requestData;
 
-    if (!title || !content || !categoryId || !adminId || !postDate) {
+    if (!title || !content || !img || !categoryId || !adminId || !postDate) {
         return new Response(
             JSON.stringify({ error: "Missing required fields" }),
             { status: 400, headers: { 'Content-Type': 'application/json' } }
         );
     }
 
-    const queryText = "INSERT INTO post (title, content, category_ID, admin_ID, postDate) VALUES (?, ?, ?, ?, ?)";
-    const values = [title, content, categoryId, adminId, postDate];
+    const queryText = "INSERT INTO post (title, content, img, category_ID, admin_ID, postDate) VALUES (?, ?, ?, ?, ?, ?)";
+    const values = [title, content, img, categoryId, adminId, postDate];
 
     try {
         const result = await query({

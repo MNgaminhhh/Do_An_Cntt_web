@@ -4,10 +4,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 const Card = ({ post }) => {
+  const maxLength = 300; 
+
   return (
     <div className={classes.container}>
         <div className={classes.imageContainer}>
-          <Image src='/p1.jpeg' alt='' fill className={classes.imageContainer}></Image>
+          <Image src={post.img} alt='' fill className={classes.imageContainer} />
         </div>
         <div className={classes.textContainer}>
             <div className={classes.detail}>
@@ -18,7 +20,7 @@ const Card = ({ post }) => {
               <h1>{post.title}</h1>
             </Link>
             <Link href={`/posts/${post.post_ID}`}>
-            <p className={classes.desc}>{post.content}</p>
+              <div dangerouslySetInnerHTML={{ __html: post.content.substring(0, maxLength) + ' ...' }} className={classes.desc} />
             </Link>
             
             <Link href={`/posts/${post.post_ID}`} className={classes.link}>Read More</Link>
@@ -28,3 +30,4 @@ const Card = ({ post }) => {
 } 
 
 export default Card
+

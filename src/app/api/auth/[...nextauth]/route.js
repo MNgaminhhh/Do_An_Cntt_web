@@ -16,17 +16,32 @@ export const authOption = {
                 }
                 let user = await query({ query: `SELECT * FROM admin WHERE username = ?`, values: [credentials.username] });
                 user = user[0];
-
+        
                 if (!user) {
                     return null;
                 }
                 if (user.password) {
-                    return user.password === credentials.password ? user : null;
+                    return user.password === credentials.password ? { admin_ID: user.admin_ID, ...user } : null;
                 }
             }
         })
     ],
-    secret: process.env.SECRET_KEY
+    secret: process.env.SECRET_KEY,
+    callbacks: {
+          async session({ session, token, user }) {
+            if (token) {
+              session = token;
+            }
+            return session
+      
+          }, 
+          async jwt({ token, user}) {
+            if (user) {
+              token.id = user.admin_ID;
+            }
+            return token
+          }
+    }
 }
 
 const handler = NextAuth(authOption);
