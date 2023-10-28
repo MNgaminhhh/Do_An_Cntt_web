@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import classes from './blogPage.module.css'
-import CardList from '../../components/CardList/CardList'
+import CardList from '@/components/CardList/CardList'
 import Menu from '@/components/Menu/Menu'
 
 const BlogCategoryPage = () => {
