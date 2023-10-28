@@ -1,14 +1,35 @@
-.container{
-    display: flex;
-    justify-content: space-between;
-}
+/* pagination.module.css */
 
-.button{
-    width: 150px;
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .pagination {
+    list-style: none;
+    padding: 0;
+    display: flex;
+  }
+  
+  .pagination li {
+    margin: 0 5px;
+  }
+  
+  .pagination button {
+    padding: 8px 12px;
+    background-color: #3498db;
+    color: #fff;
     border: none;
-    font-size: 14px;
-    padding: 17px;
-    background-color: rgb(148, 37, 59);
-    color: white;
+    border-radius: 5px;
     cursor: pointer;
-}
+  }
+  
+  .pagination button:hover {
+    background-color: #2980b9;
+  }
+  
+  .pagination .active button {
+    background-color: #2ecc71;
+  }
+  

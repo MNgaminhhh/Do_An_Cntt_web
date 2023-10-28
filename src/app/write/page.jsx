@@ -7,9 +7,10 @@ import Link from 'next/link';
 import axios from 'axios';
 import 'react-quill/dist/quill.bubble.css';
 import { useSession } from "next-auth/react";
+import { useSearchParams, useRouter } from 'next/navigation';
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
-const WritePage = () => {
+const WritePage = ({ params }) => {
   const [image, setImage] = useState(null);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -21,20 +22,49 @@ const WritePage = () => {
   const [file, setFile] = useState(null);
   const [filename, setFilename] = useState('');
   const [imageUrl, setImageUrl] = useState('');
+  const router = useRouter();
   const { data: session} = useSession();
-
-
+  const searchParams = useSearchParams();
+  const postId = searchParams.get('postId');
   useEffect(() => {
     fetch('http://localhost:3000/api/category')
       .then((response) => response.json())
       .then((data) => setCategories(data));
+    
   }, []);
-  
+  useEffect(() => {
+    fetchPostDetails(postId);
+  }, [postId]);
+  const handleSuccess = () => {
+    if (postId) {
+      alert('Bài viết đã được cập nhật thành công!');
+    } else {
+      alert('Bài viết đã được đăng thành công!');
+    }
+  };
+  const fetchPostDetails = async (postId) => {
+    if (!postId) {
+      return;
+    }
+
+    try {
+      const response = await fetch(`http://localhost:3000/api/posts/${postId}`);
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch post details');
+      }
+
+      const postData = await response.json();
+      setTitle(postData.title);
+      setContent(postData.content);
+      setImageUrl(postData.img)
+      setSelectedCategory(postData.category_ID);
+    } catch (error) {
+      console.error('Error fetching post details:', error);
+    }
+  };
   const handleSubmitPosts = async (e) => {
     e.preventDefault();
-    console.log(new Date())
-    console.log(selectedCategory)
-    console.log(session.id)
     try {
       const response = await fetch('http://localhost:3000/api/posts', {
         method: 'POST',
@@ -54,7 +84,8 @@ const WritePage = () => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-
+      handleSuccess();
+      router.push("/");
       const data = await response.json();
       setError(data.message);
       setTitle('');
@@ -65,7 +96,41 @@ const WritePage = () => {
       console.error('There has been a problem with your fetch operation:', error);
     }
   };
-
+  //update post 
+  const handleUpdatePost = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(`http://localhost:3000/api/posts/${postId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          title,
+          content,
+          img: imageUrl,
+          postDate: new Date(),
+          categoryId: selectedCategory,
+          adminId: session.id,
+        }),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      handleSuccess();
+      router.push("/");
+      const data = await response.json();
+      setError(data.message);
+      setTitle('');
+      setContent('');
+      setSelectedCategory('');
+      setImageUrl('');
+    } catch (error) {
+      console.error('There has been a problem with your fetch operation:', error);
+    }
+  };
+  
   //image upload in cloudinary
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
@@ -233,24 +298,29 @@ const WritePage = () => {
             <div className={classes.comboBoxCategory}>
               <label htmlFor="category" className={classes.label}>Danh mục:  </label>
               <select
-                id="category"
-                name="category"
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
-                className={classes.select}
-              >
-                <option value="">-- Chọn danh mục --</option>
-                {categories.map((category) => (
-                  <option key={category.category_ID} value={category.category_ID}>
-                    {category.category_Name}
-                  </option>
-                ))}
-              </select>
+                  id="category"
+                  name="category"
+                  value={selectedCategory}
+                  onChange={(e) => setSelectedCategory(e.target.value)}
+                  className={classes.select}
+                >
+                  <option value="">-- Chọn danh mục --</option>
+                  {categories.map((category) => (
+                    <option key={category.category_ID} value={category.category_ID}>
+                      {category.category_Name}
+                    </option>
+                  ))}
+                </select>
+
             </div>
             <button className={classes.publish} onClick={(e) => {
-              handleSubmitPosts(e)
+              if (postId) {
+                handleUpdatePost(e);
+              } else {
+                handleSubmitPosts(e);
+              }
             }}>
-              Đăng Bài
+              {postId ? "Cập Nhật Bài Viết" : "Đăng Bài"}
             </button>
         </div>
       )}

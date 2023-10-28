@@ -10,14 +10,12 @@ const Page = () => {
   const router = useRouter();
   const [postId, setPostId] = useState(null);
   const [post, setPost] = useState(null);
-
   const { data: session } = useSession();
 
   useEffect(() => {
     const postIdFromPath = window.location.pathname.match(/\/posts\/(\d+)/);
     if (postIdFromPath) {
       const postId = postIdFromPath[1];
-      console.log('Post ID:', postId);
       setPostId(postId);
     }
 
@@ -39,7 +37,7 @@ const Page = () => {
     fetchPost();
   }, [postId]);
   const handleEdit = () => {
-
+    router.push(`/write?postId=${postId}`);
   };
   
   const handleDelete = async () => {
@@ -96,14 +94,14 @@ const Page = () => {
           </div>
         </div>
         <div className={classes.imageContainer}>
-          <Image src="/p1.jpeg" alt='' fill className={classes.image}></Image>
+          <Image src={post.img} alt='' fill className={classes.image}></Image>
         </div>
       </div>
       <div className={classes.content}>
         <div className={classes.post}>
-          <div className={classes.description}>
-            <p>{post.content}</p>
-          </div>
+        <div className={classes.description}>
+          <div dangerouslySetInnerHTML={{ __html: post.content }} />
+        </div>
         </div>
         
         <Menu></Menu>

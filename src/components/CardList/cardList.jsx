@@ -1,36 +1,50 @@
 "use client"
-import React, { useEffect, useState } from 'react'
-import classes from './cardList.module.css'
-import Link from 'next/link'
-import Image from 'next/image'
-import Card from '../card/Card'
-import Pagination from '@/components/Pagination/Pagination'
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import classes from './cardList.module.css';
+import Card from '../card/Card';
+import Pagination from '@/components/Pagination/Pagination';
 
 const Page = ({ posts }) => {
-  const [categories, setCategories] = useState([]);
   const [allPosts, setAllPosts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 5;
+  const router = useRouter();
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/category')
-      .then(response => response.json())
-      .then(data => setCategories(data));
-
+    // Fetch all posts
     fetch('http://localhost:3000/api/posts')
-      .then(response => response.json())
-      .then(data => setAllPosts(data));
+      .then((response) => response.json())
+      .then((data) => setAllPosts(data));
   }, []);
+
+  // Logic to paginate posts
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = allPosts.slice(indexOfFirstPost, indexOfLastPost);
+
+  // Function to handle page change
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    router.push(`/?page=${pageNumber}`, undefined, { shallow: true });
+  };
+
   return (
     <div className={classes.container}>
       <h1 className={classes.title}>Bài Viết Gần Đây</h1>
       <div className={classes.posts}>
-        {posts ? posts.map((post) => (
-          <Card key={post.post_ID} post={post}></Card>
-        )) : allPosts.map((post) => (
-          <Card key={post.post_ID} post={post}></Card>
-        ))}
+        {posts
+          ? posts.map((post) => <Card key={post.post_ID} post={post}></Card>)
+          : currentPosts.map((post) => <Card key={post.post_ID} post={post}></Card>)}
       </div>
-      <Pagination></Pagination>
+      <Pagination
+        currentPage={currentPage}
+        postsPerPage={postsPerPage}
+        totalPosts={allPosts.length}
+        onPageChange={handlePageChange}
+      />
     </div>
-  )
-}
-export default Page
+  );
+};
+
+export default Page;
