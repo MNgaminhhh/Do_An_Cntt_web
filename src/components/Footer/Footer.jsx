@@ -1,24 +1,24 @@
-import React from 'react'
-import classes from '@/components/Footer/footer.module.css'  
+import React from 'react';
+import classes from '@/components/Footer/footer.module.css';
+
 const Footer = () => {
   return (
     <div className={classes.container}>
       <footer className={classes.footer}>
-      <div className={classes.wrapper}>
-        <div className={classes.col}>
-          <h2>About the App</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti corporis aperiam deserunt nihil eligendi corrupti eveniet hic quaerat provident explicabo iusto quo omnis delectus ea earum vero, quis magni fugiat?</p>
+        <div className={classes.wrapper}>
+          <div className={classes.col}>
+            <h2>Về Tin Công Nghệ</h2>
+            <p>Chào mừng bạn đến với nền tảng tin công nghệ của chúng tôi! Chúng tôi luôn cố gắng mang đến cho bạn những cập nhật mới nhất và các bài viết sâu sắc về thế giới công nghệ đang liên tục thay đổi. Khám phá những câu chuyện hấp dẫn, phân tích chi tiết và cập nhật về các tiến bộ công nghệ đang hình thành tương lai của chúng ta.</p>
+          </div>
+          <div className={classes.col}>
+            <h2>Liên Hệ</h2>
+            <span>Email: 21110242@student.hcmute.edu.vn</span>
+            <span>Điện thoại: +123-456-7890</span>
+          </div>
         </div>
-        <div className={classes.col}>
-          <h2>Contacts</h2>
-          <span>Phone: +12348390</span>
-          <span>Youtube: MNgaminh</span>
-        </div>
-      </div>
-    </footer>
+      </footer>
     </div>
-    
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

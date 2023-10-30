@@ -6,7 +6,6 @@ import { ThemeContext } from '@/context/themeContext'
 const themeToggle = () => {
   const {theme, toggle} = useContext(ThemeContext)
     //console.log(theme)
-
     return (
       <div className={classes.container} onClick={toggle} style={theme==="dark" ? {backgroundColor: "white"} : {backgroundColor:"#0f172a"}}>
         <Image src="/moon.png" alt="" width={14} height={14}></Image>

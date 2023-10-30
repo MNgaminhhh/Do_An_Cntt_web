@@ -18,7 +18,7 @@ const AuthLinks = () => {
           </span>
         </>
       ) : (
-        <Link href="/login">Đăng Nhập</Link>
+        <Link href="/login"></Link>
       )}
       <div className={styles.burger} onClick={() => setOpen(!open)}>
         <div className={styles.line}></div>
@@ -38,7 +38,7 @@ const AuthLinks = () => {
               </span>
             </>
           ) : (
-            <Link href="/login">Đăng Nhập</Link>
+            <Link href="/login"></Link>
           )}
         </div>
       )}

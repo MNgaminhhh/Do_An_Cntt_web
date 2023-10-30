@@ -11,7 +11,9 @@ const Page = () => {
   const [postId, setPostId] = useState(null);
   const [post, setPost] = useState(null);
   const { data: session } = useSession();
-
+  const postDate = post ? new Date(post.postDate) : null;
+  const formattedDate = postDate ? postDate.toLocaleDateString('en-US') : '';
+  const [admin, setAdmin] = useState(null);
   useEffect(() => {
     const postIdFromPath = window.location.pathname.match(/\/posts\/(\d+)/);
     if (postIdFromPath) {
@@ -36,6 +38,29 @@ const Page = () => {
 
     fetchPost();
   }, [postId]);
+
+  useEffect(() => {
+    // Your existing code
+
+    // Fetch the admin data
+    const fetchAdmin = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/api/admin');
+        if (!response.ok) {
+          throw new Error('Failed to fetch admin data');
+        }
+        const adminData = await response.json();
+        // You might want to filter adminData based on postId's admin_ID
+        // For example:
+        const adminOfPost = adminData.find(admin => admin.admin_ID === post.admin_ID);
+        setAdmin(adminOfPost);
+      } catch (error) {
+        console.error('Error fetching admin data:', error);
+      }
+    };
+
+    fetchAdmin();
+  }, [post]);
   const handleEdit = () => {
     router.push(`/write?postId=${postId}`);
   };
@@ -84,13 +109,18 @@ const Page = () => {
         <div className={classes.textContainer}>
           <h1 className={classes.title}>{post.title}</h1>
           <div className={classes.user}>
-            <div className={classes.userImageContainer}>
-              <Image className={classes.avatar} src='/p1.jpeg' alt='' fill></Image>
-            </div>
-            <div className={classes.userTextCotainer}>
-              <span className={classes.username}>MNgaminh</span>
-              <span className={classes.date}>{post.postDate}</span>
-            </div>
+            {admin && admin.full_name && ( 
+              <>
+                <div className={classes.userImageContainer}>
+                  <Image className={classes.avatar} src='/p1.jpeg' alt='' fill></Image>
+                </div>
+                <div className={classes.userTextCotainer}>
+                  <span className={classes.username}>{admin.full_name} - </span>
+                  <span className={classes.date}>{formattedDate}</span>
+                </div>
+              </>
+              
+            )}
           </div>
         </div>
         <div className={classes.imageContainer}>

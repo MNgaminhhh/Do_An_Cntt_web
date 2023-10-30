@@ -1,8 +1,7 @@
 "use client"
-import React, { useEffect, useState } from 'react'
-import classes from './menuCategories.module.css'
-import Link from 'next/link'
-import Image from 'next/image'
+import React, { useEffect, useState } from 'react';
+import classes from './menuCategories.module.css';
+import Link from 'next/link';
 
 const MenuCategories = () => {
   const [categories, setCategories] = useState([]);
@@ -16,12 +15,14 @@ const MenuCategories = () => {
   return (
     <div className={classes.categoryList}>
       {categories.map((category) => (
-        <Link key={category.category_ID} href={`/blog?cat=${category.category_Name}`} className={`${classes.categoryItem} ${classes.bg}`}>
-          {category.category_Name}
+        <Link key={category.category_ID} href={`/blog?cat=${category.category_Name}`}>
+          <span className={`${classes.categoryItem} ${classes.bg}`}>
+            {category.category_Name}
+          </span>
         </Link>
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default MenuCategories
+export default MenuCategories;
