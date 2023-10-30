@@ -4,7 +4,7 @@ import classes from './menuPost.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
 
-const menuPosts = ({withImage}) => {
+const MenuPosts = ({withImage}) => {
   const [posts, setPosts] = useState([]);
   const [categories, setCategories] = useState([]);
 
@@ -48,4 +48,4 @@ const menuPosts = ({withImage}) => {
   )
 }
 
-export default menuPosts
+export default MenuPosts;

@@ -3,7 +3,8 @@ import React, { useContext } from 'react'
 import classes from './themeToggle.module.css'
 import Image from 'next/image'
 import { ThemeContext } from '@/context/themeContext'
-const themeToggle = () => {
+
+const ThemeToggle = () => {
   const {theme, toggle} = useContext(ThemeContext)
     //console.log(theme)
     return (
@@ -15,4 +16,4 @@ const themeToggle = () => {
     )
 }
 
-export default themeToggle
+export default ThemeToggle;
