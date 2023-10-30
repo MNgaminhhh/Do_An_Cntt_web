@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import classes from './cardList.module.css';
-import Card from '../card/Card';
+import Card from '@/components/card/Card';
 import Pagination from '@/components/Pagination/Pagination';
 
 const Page = ({ posts }) => {

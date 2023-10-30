@@ -3,7 +3,7 @@ import React from 'react'
 import logo from '@/img/logo_final.png'
 import classes from '@/components/Header/header.module.css'
 import person from '@/img/logo_final.png'
-import ThemeToggle from '../ThemeToggle/ThemeToggle'
+import ThemeToggle from '@/components/ThemeToggle/ThemeToggle'
 import AuthLink from '@/components/authLinks/AuthLinks'
 import Link from 'next/link'
 const Header = () => {
@@ -13,7 +13,7 @@ const Header = () => {
         <div className={classes.wrapper}>
           <div className={classes.right}>
             <Link href='/' className={classes.link}>Trang Chủ</Link>
-            <Link href='/' className={classes.link}>Liên Hệ</Link>
+            <Link href='/contact' className={classes.link}>Liên Hệ</Link>
           </div>
           <div className={classes.left}>
             <h2>
