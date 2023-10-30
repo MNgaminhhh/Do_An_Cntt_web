@@ -1,50 +1,84 @@
-.container{
+.container {
     margin-top: 30px;
 }
 
-.title{
-    font-size: 86px;
-    font-weight: 300;
+.title {
+    font-size: 40px;
+    font-weight: 600;
 }
-.bold{
 
+.bold {
+    /* Define styles for the .bold class if needed */
 }
-.post{
+
+.post {
     margin-top: 60px;
     display: flex;
     align-items: center;
     gap: 50px;
 }
 
-.imgContainer{
+.imgContainer {
     flex: 1;
     height: 500px;
     position: relative;
 }
-.textContainer{
+
+.textContainer {
     flex: 1;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.image{
+.image {
     object-fit: cover;
 }
 
-.postTitle{
+.postTitle {
     font-size: 40px;
 }
-.postDesc{
+
+.postDesc {
     font-size: 20px;
     font-weight: 300;
     color: var(--softTextColor);
 }
 
-.button{
-    padding: 16px 20px;
+.button {
+    width: 150px;
     border: none;
-    border-radius: 5px;
-    width: max-content;
+    font-size: 14px;
+    padding: 17px;
+    background-color: rgb(148, 37, 59);
+    color: white;
     cursor: pointer;
+}
+
+@media screen and (max-width: 1280px) {
+    .title {
+        font-size: 36px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .title {
+        font-size: 32px;
+    }
+
+    .imgContainer {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .title {
+        font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .title {
+        font-size: 18px;
+    }
 }

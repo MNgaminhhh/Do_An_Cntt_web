@@ -1,12 +1,8 @@
-.container{
-    position: sticky;
-    z-index: 999;
+.container {
     height: 80px;
-    top: 0;
-    left: 0;
 }
 
-.wrapper{
+.wrapper {
     width: 1336px;
     margin: 0 auto;
     display: flex;
@@ -15,17 +11,16 @@
     position: relative;
 }
 
-.left{
+.left {
     font-size: 36px;
-
 }
 
-.img{
+.img {
     margin-top: 5px;
     padding: 5px;
 }
 
-.right{
+.right {
     font-size: 20px;
     display: flex;
     font-weight: 400;
@@ -33,17 +28,69 @@
     gap: 1.5rem;
 }
 
-.right .link{
+.right .link {
     text-decoration: none;
 }
 
-.right .link:hover{
+.right .link:hover {
     font-size: 23px;
     font-weight: 600;
     color: red;
     transition: ease-in-out 0.15s;
 }
 
-@media screen and (max-width: 1288px) {
-    
+@media screen and (max-width: 1536px) {
+    .wrapper {
+        max-width: 1366px;
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    .wrapper {
+        max-width: 1024px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .wrapper {
+        max-width: 768px;
+        width: 100%;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    .left {
+        font-size: 28px; 
+
+    .right {
+        font-size: 16px;
+    }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .wrapper {
+        max-width: 640px;
+    }
+
+    .left {
+        font-size: 24px; 
+    }
+
+    .right {
+        font-size: 14px; 
+    }
+}
+@media screen and (max-width: 640px) {
+    .wrapper {
+        max-width: 640px;
+    }
+
+    .left {
+        font-size: 24px; 
+    }
+
+    .right {
+        font-size: 14px; 
+    }
 }

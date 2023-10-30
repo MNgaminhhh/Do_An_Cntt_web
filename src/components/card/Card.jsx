@@ -1,26 +1,37 @@
-import React from 'react'
-import classes from './card.module.css'
-import Image from 'next/image'
-import Link from 'next/link'
-const Card = () => {
+import React from 'react';
+import classes from './card.module.css';
+import Image from 'next/image';
+import Link from 'next/link';
+
+const Card = ({ post, admin }) => {
+  const maxLength = 300;
+
+  const postDate = new Date(post.postDate); 
+  const formattedDate = postDate.toLocaleDateString('en-US'); 
+
   return (
     <div className={classes.container}>
-        <div className={classes.imageContainer}>
-          <Image src='/p1.jpeg' alt='' fill className={classes.imageContainer}></Image>
+      <div className={classes.imageContainer}>
+        <Image src={post.img} alt='' fill className={classes.imageContainer} />
+      </div>
+      <div className={classes.textContainer}>
+        <div className={classes.detail}>
+          <span className={classes.category}>{admin.full_name} - </span>
+          <span className={classes.date}>{formattedDate}</span>
         </div>
-        <div className={classes.textContainer}>
-            <div className={classes.detail}>
-                <span className={classes.date}>11.02.2023 - </span>
-                <span className={classes.category}>CULTURE</span>
-            </div>
-            <Link href="/posts/1">
-              <h1>Lorem ipsum dolor, sit amet consectetur adipisicing elit. </h1>
-            </Link>
-            <p className={classes.desc}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quam numquam tenetur similique harum eaque cum recusandae molestias earum consectetur soluta assumenda nemo aliquam reiciendis sapiente ullam dolore, placeat labore maxime?</p>
-            <Link href="/posts/1" className={classes.link}>Read More</Link>
-        </div>
-    </div>
-  )
-} 
+        <Link href={`/posts/${post.post_ID}`} admin={admin} post={post}> 
+          <h1>{post.title}</h1>
+        </Link>
+        <Link href={`/posts/${post.post_ID}`} admin={admin} post={post}>
+          <div dangerouslySetInnerHTML={{ __html: post.content.substring(0, maxLength) + ' ...' }} className={classes.desc} />
+        </Link>
 
-export default Card
+        <Link href={`/posts/${post.post_ID}`} className={classes.link} admin={admin} post={post}>
+          Read More
+        </Link>
+      </div>
+    </div>
+  );
+};
+
+export default Card;
