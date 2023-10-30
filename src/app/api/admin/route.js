@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import { query } from "@/lib/db";
-=======
-import { query } from "../../../lib/db";
->>>>>>> nguyenminh
 
 export async function GET(request) {
     const users = await query({

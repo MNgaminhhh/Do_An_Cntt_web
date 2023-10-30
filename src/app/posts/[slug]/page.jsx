@@ -129,27 +129,6 @@ const Page = () => {
       </div>
       <div className={classes.content}>
         <div className={classes.post}>
-<<<<<<< HEAD
-          <div className={classes.description}>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos sint inventore aut quasi perferendis iste in beatae ut eum eveniet, fuga cumque, cum recusandae? Consectetur modi distinctio magnam voluptate. Sunt.</p>
-            <p>
-            <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit</h5>
-            </p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos sint inventore aut quasi perferendis iste in beatae ut eum eveniet, fuga cumque, cum recusandae? Consectetur modi distinctio magnam voluptate. Sunt.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos sint inventore aut quasi perferendis iste in beatae ut eum eveniet, fuga cumque, cum recusandae? Consectetur modi distinctio magnam voluptate. Sunt.</p>
-
-          </div>
-          <div className={classes.comment}>
-          </div>
-        </div>
-          <Menu></Menu>
-      </div>
-    </div>
-  )
-}
-
-export default page
-=======
         <div className={classes.description}>
           <div dangerouslySetInnerHTML={{ __html: post.content }} />
         </div>
@@ -162,4 +141,3 @@ export default page
 };
 
 export default Page;
->>>>>>> nguyenminh
