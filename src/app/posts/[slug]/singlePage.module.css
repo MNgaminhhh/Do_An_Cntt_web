@@ -38,6 +38,7 @@
   }
   
   .username {
+    color: #cc0000;
     font-size: 20px;
     font-weight: 500;
   }
@@ -61,7 +62,6 @@
     flex: 5;
     margin-top: 60px;
   }
-  
   .description p {
     font-size: 20px;
     font-weight: 300;

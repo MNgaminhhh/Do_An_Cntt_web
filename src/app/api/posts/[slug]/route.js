@@ -1,7 +1,7 @@
 import { query } from "../../../../lib/db";
 
 export async function GET(request) {
-    const postId = parseInt(request.url.split("/").pop(), 10); // Extract post ID from the URL
+    const postId = parseInt(request.url.split("/").pop(), 10);
     if (isNaN(postId)) {
         return new Response("Invalid post ID", {
             status: 400,

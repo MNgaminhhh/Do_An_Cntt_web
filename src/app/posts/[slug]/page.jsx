@@ -40,9 +40,6 @@ const Page = () => {
   }, [postId]);
 
   useEffect(() => {
-    // Your existing code
-
-    // Fetch the admin data
     const fetchAdmin = async () => {
       try {
         const response = await fetch('http://localhost:3000/api/admin');
@@ -50,8 +47,6 @@ const Page = () => {
           throw new Error('Failed to fetch admin data');
         }
         const adminData = await response.json();
-        // You might want to filter adminData based on postId's admin_ID
-        // For example:
         const adminOfPost = adminData.find(admin => admin.admin_ID === post.admin_ID);
         setAdmin(adminOfPost);
       } catch (error) {
@@ -129,11 +124,10 @@ const Page = () => {
       </div>
       <div className={classes.content}>
         <div className={classes.post}>
-        <div className={classes.description}>
-          <div dangerouslySetInnerHTML={{ __html: post.content }} />
+          <div className={classes.description}>
+            <div dangerouslySetInnerHTML={{ __html: post.content }} />
+          </div>
         </div>
-        </div>
-        
         <Menu></Menu>
       </div>
     </div>
