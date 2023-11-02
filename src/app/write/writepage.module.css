@@ -217,3 +217,42 @@
     margin-top: 10px;
     width: 50%;
 }
+
+@media screen and (max-width: 1536px) {
+    .titleInput {
+        font-size: 20px;
+    }
+    .editor {
+        max-width: 600px;
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    .titleInput {
+        font-size: 18px;
+    }
+    .editor {
+        max-width: 500px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .editor {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .addButton{
+        max-width: 100%;
+    }
+    .editTab{
+        max-width: 80%;
+    }   
+    .titleInput {
+        font-size: 16px;
+    }
+    .add {
+        margin-bottom: 10px;
+    }
+}

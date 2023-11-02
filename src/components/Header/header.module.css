@@ -28,6 +28,14 @@
     gap: 1.5rem;
 }
 
+.rightHeader {
+    font-size: 20px;
+    display: flex;
+    font-weight: 400;
+    align-items: center;
+    gap: 1.5rem;
+}
+
 .right .link {
     text-decoration: none;
 }
@@ -73,12 +81,8 @@
         max-width: 640px;
     }
 
-    .left {
-        font-size: 24px; 
-    }
-
     .right {
-        font-size: 14px; 
+        display: none;
     }
 }
 @media screen and (max-width: 640px) {

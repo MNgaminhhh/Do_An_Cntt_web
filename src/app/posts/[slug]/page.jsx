@@ -114,7 +114,6 @@ const Page = () => {
                   <span className={classes.date}>{formattedDate}</span>
                 </div>
               </>
-              
             )}
           </div>
         </div>
@@ -125,7 +124,7 @@ const Page = () => {
       <div className={classes.content}>
         <div className={classes.post}>
           <div className={classes.description}>
-            <div dangerouslySetInnerHTML={{ __html: post.content }} />
+            <div className={classes.descriptionContent} dangerouslySetInnerHTML={{ __html: post.content }} />
           </div>
         </div>
         <Menu></Menu>

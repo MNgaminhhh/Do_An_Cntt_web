@@ -20,7 +20,7 @@ const Header = () => {
               <Link href='/'><Image src={person} width='91' height='55' className={classes.img} alt=''></Image></Link>
             </h2>
           </div>
-          <div className={classes.right}>
+          <div className={classes.rightHeader}>
             <ThemeToggle></ThemeToggle>
             <AuthLink></AuthLink>
           </div>
