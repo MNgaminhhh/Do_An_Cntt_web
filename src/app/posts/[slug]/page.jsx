@@ -104,17 +104,17 @@ const Page = () => {
         <div className={classes.textContainer}>
           <h1 className={classes.title}>{post.title}</h1>
           <div className={classes.user}>
-            {admin && admin.full_name && ( 
-              <>
-                <div className={classes.userImageContainer}>
-                  <Image className={classes.avatar} src='/p1.jpeg' alt='' fill></Image>
-                </div>
-                <div className={classes.userTextCotainer}>
-                  <span className={classes.username}>{admin.full_name} - </span>
-                  <span className={classes.date}>{formattedDate}</span>
-                </div>
-              </>
-            )}
+          {admin && admin.full_name ? (
+            <>
+              <div className={classes.userImageContainer}>
+                <Image className={classes.avatar} src='/p1.jpeg' alt='' fill />
+              </div>
+              <div className={classes.userTextContainer}>
+                <span className={classes.username}>{admin.full_name} - </span>
+                <span className={classes.date}>{formattedDate}</span>
+              </div>
+            </>
+          ) : null}
           </div>
         </div>
         <div className={classes.imageContainer}>

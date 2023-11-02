@@ -120,7 +120,7 @@ const AdminProfile = () => {
                             type="text"
                             id="full_name"
                             name="full_name"
-                            value={admin.full_name}
+                            value={admin.full_name || ''}
                             onChange={handleInputChange}
                             readOnly
                         />

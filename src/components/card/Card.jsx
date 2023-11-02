@@ -16,7 +16,7 @@ const Card = ({ post, admin }) => {
       </div>
       <div className={classes.textContainer}>
         <div className={classes.detail}>
-          <span className={classes.category}>{admin.full_name} - </span>
+          <span className={classes.category}>{admin.full_name ? admin.full_name + ' - ' : null}</span>
           <span className={classes.date}>{formattedDate}</span>
         </div>
         <Link href={`/posts/${post.post_ID}`} admin={admin} post={post}> 
