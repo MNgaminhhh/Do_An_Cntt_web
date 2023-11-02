@@ -7,7 +7,7 @@ const MenuCategories = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/category')
+    fetch('https://do-an-cntt-web.vercel.app/api/category')
       .then(response => response.json())
       .then(data => setCategories(data));
   }, []);

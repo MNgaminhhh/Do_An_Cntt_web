@@ -27,7 +27,7 @@ const WritePage = ({ params }) => {
   const searchParams = useSearchParams();
   const postId = searchParams.get('postId');
   useEffect(() => {
-    fetch('http://localhost:3000/api/category')
+    fetch('https://do-an-cntt-web.vercel.app/api/category')
       .then((response) => response.json())
       .then((data) => setCategories(data));
     
@@ -48,7 +48,7 @@ const WritePage = ({ params }) => {
     }
 
     try {
-      const response = await fetch(`http://localhost:3000/api/posts/${postId}`);
+      const response = await fetch(`https://do-an-cntt-web.vercel.app/api/posts/${postId}`);
 
       if (!response.ok) {
         throw new Error('Failed to fetch post details');
@@ -66,7 +66,7 @@ const WritePage = ({ params }) => {
   const handleSubmitPosts = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:3000/api/posts', {
+      const response = await fetch('https://do-an-cntt-web.vercel.app/api/posts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -100,7 +100,7 @@ const WritePage = ({ params }) => {
   const handleUpdatePost = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:3000/api/posts/${postId}`, {
+      const response = await fetch(`https://do-an-cntt-web.vercel.app/api/posts/${postId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -172,7 +172,7 @@ const WritePage = ({ params }) => {
         return;
     }
     try {
-        const response = await fetch('http://localhost:3000/api/category', {
+        const response = await fetch('https://do-an-cntt-web.vercel.app/api/category', {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -197,7 +197,7 @@ const WritePage = ({ params }) => {
       return;
     }
     try {
-      const response = await fetch('http://localhost:3000/api/category', {
+      const response = await fetch('https://do-an-cntt-web.vercel.app/api/category', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

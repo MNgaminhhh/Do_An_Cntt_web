@@ -18,7 +18,7 @@ const RegisterForm = () => {
                 setError("Tên tài khoản và mật khẩu phải có ít nhất 4 ký tự");
                 return; 
             }
-            const response = await fetch('http://localhost:3000/api/auth/register', {
+            const response = await fetch('https://do-an-cntt-web.vercel.app/api/auth/register', {
                 method: "POST",
                 body: JSON.stringify(user)
             });

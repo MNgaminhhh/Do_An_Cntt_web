@@ -11,7 +11,7 @@ const Featured = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/posts');
+        const response = await fetch('https://do-an-cntt-web.vercel.app/api/posts');
         const data = await response.json();
         const highestIdPost = data.reduce((prev, current) =>
           prev.id > current.id ? prev : current

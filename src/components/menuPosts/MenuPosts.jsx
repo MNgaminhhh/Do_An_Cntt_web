@@ -9,10 +9,10 @@ const MenuPosts = ({withImage}) => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/category')
+    fetch('https://do-an-cntt-web.vercel.app/api/category')
       .then((response) => response.json())
       .then((data) => setCategories(data));
-    fetch('http://localhost:3000/api/posts')
+    fetch('https://do-an-cntt-web.vercel.app/api/posts')
       .then((response) => response.json())
       .then((data) => {
         data.sort((a, b) => new Date(b.date) - new Date(a.date));

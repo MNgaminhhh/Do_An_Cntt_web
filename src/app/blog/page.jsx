@@ -14,7 +14,7 @@ const BlogCategoryPage = () => {
     setCat(catParam);
 
     if (catParam) {
-      fetch(`http://localhost:3000/api/posts?cat=${encodeURIComponent(catParam)}`)
+      fetch(`https://do-an-cntt-web.vercel.app/api/posts?cat=${encodeURIComponent(catParam)}`)
         .then(response => response.json())
         .then(data => setCategoryPosts(data));
     }
