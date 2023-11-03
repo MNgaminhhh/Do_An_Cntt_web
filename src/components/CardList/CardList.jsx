@@ -14,11 +14,11 @@ const Page = ({ posts }) => {
 
   useEffect(() => {
     // Fetch all posts
-    fetch('https://do-an-cntt-web.vercel.app/api/posts')
+    fetch('https://www.mn-tech.tech/api/posts')
       .then((response) => response.json())
       .then((data) => setAllPosts(data));
 
-    fetch('https://do-an-cntt-web.vercel.app/api/admin') 
+    fetch('https://www.mn-tech.tech/api/admin') 
       .then((response) => response.json())
       .then((data) => setAllAdmins(data));
   }, []);

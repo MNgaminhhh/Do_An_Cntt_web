@@ -29,7 +29,7 @@ const Page = () => {
     const fetchPost = async () => {
       if (postId) {
         try {
-          const response = await fetch(`https://do-an-cntt-web.vercel.app/api/posts/${postId}`);
+          const response = await fetch(`https://www.mn-tech.tech/api/posts/${postId}`);
           if (!response.ok) {
             throw new Error('Không tìm thấy bài đăng !');
           }
@@ -47,7 +47,7 @@ const Page = () => {
   useEffect(() => {
     const fetchAdmin = async () => {
       try {
-        const response = await fetch('https://do-an-cntt-web.vercel.app/api/admin');
+        const response = await fetch('https://www.mn-tech.tech/api/admin');
         if (!response.ok) {
           throw new Error('Failed to fetch admin data');
         }
@@ -69,7 +69,7 @@ const Page = () => {
   
   const handleDelete = async () => {
     try {
-      const response = await fetch(`https://do-an-cntt-web.vercel.app/api/posts/${postId}`, {
+      const response = await fetch(`https://www.mn-tech.tech/api/posts/${postId}`, {
         method: 'DELETE',
       });
   

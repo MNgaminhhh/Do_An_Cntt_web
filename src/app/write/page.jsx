@@ -30,7 +30,7 @@ const WritePage = ({ params }) => {
   const searchParams = useSearchParams();
   const postId = searchParams.get('postId');
   useEffect(() => {
-    fetch('https://do-an-cntt-web.vercel.app/api/category')
+    fetch('https://www.mn-tech.tech/api/category')
       .then((response) => response.json())
       .then((data) => setCategories(data));
     
@@ -51,7 +51,7 @@ const WritePage = ({ params }) => {
     }
 
     try {
-      const response = await fetch(`https://do-an-cntt-web.vercel.app/api/posts/${postId}`);
+      const response = await fetch(`https://www.mn-tech.tech/api/posts/${postId}`);
 
       if (!response.ok) {
         throw new Error('Failed to fetch post details');
@@ -69,7 +69,7 @@ const WritePage = ({ params }) => {
   const handleSubmitPosts = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('https://do-an-cntt-web.vercel.app/api/posts', {
+      const response = await fetch('https://www.mn-tech.tech/api/posts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -103,7 +103,7 @@ const WritePage = ({ params }) => {
   const handleUpdatePost = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`https://do-an-cntt-web.vercel.app/api/posts/${postId}`, {
+      const response = await fetch(`https://www.mn-tech.tech/api/posts/${postId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -175,7 +175,7 @@ const WritePage = ({ params }) => {
         return;
     }
     try {
-        const response = await fetch('https://do-an-cntt-web.vercel.app/api/category', {
+        const response = await fetch('https://www.mn-tech.tech/api/category', {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -200,7 +200,7 @@ const WritePage = ({ params }) => {
       return;
     }
     try {
-      const response = await fetch('https://do-an-cntt-web.vercel.app/api/category', {
+      const response = await fetch('https://www.mn-tech.tech/api/category', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

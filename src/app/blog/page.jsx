@@ -17,7 +17,7 @@ const BlogCategoryPage = () => {
     setCat(catParam);
 
     if (catParam) {
-      fetch(`https://do-an-cntt-web.vercel.app/api/posts?cat=${encodeURIComponent(catParam)}`)
+      fetch(`https://www.mn-tech.tech/api/posts?cat=${encodeURIComponent(catParam)}`)
         .then(response => response.json())
         .then(data => setCategoryPosts(data));
     }
