@@ -16,17 +16,17 @@ const Card = ({ post, admin }) => {
       </div>
       <div className={classes.textContainer}>
         <div className={classes.detail}>
-          <span className={classes.category}>{admin.full_name ? admin.full_name + ' - ' : null}</span>
+          <span className={classes.category}>{admin && admin.full_name ? admin.full_name + ' - ' : null}</span>
           <span className={classes.date}>{formattedDate}</span>
         </div>
-        <Link href={`/posts/${post.post_ID}`} admin={admin} post={post}> 
+        <Link href={`/posts/${post.post_ID}`}> 
           <h1>{post.title}</h1>
         </Link>
-        <Link href={`/posts/${post.post_ID}`} admin={admin} post={post}>
+        <Link href={`/posts/${post.post_ID}`}>
           <div dangerouslySetInnerHTML={{ __html: post.content.substring(0, maxLength) + ' ...' }} className={classes.desc} />
         </Link>
 
-        <Link href={`/posts/${post.post_ID}`} className={classes.link} admin={admin} post={post}>
+        <Link href={`/posts/${post.post_ID}`} className={classes.link}>
           Read More
         </Link>
       </div>
