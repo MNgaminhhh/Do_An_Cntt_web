@@ -8,10 +8,23 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
+.image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    position: relative;
+  }
+  
+  .img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  
 .titleContent {
     text-align: center;
-    color: #333;
+    
     margin-bottom: 20px;
 }
 
@@ -20,13 +33,13 @@
 }
 
 .title {
+    text-align: center;
     color: #0077cc;
     font-size: 1.8rem;
     margin-bottom: 10px;
 }
 
 .desc {
-    color: #555;
     font-size: 1.1rem;
     line-height: 1.6;
     margin-left: 10px; 

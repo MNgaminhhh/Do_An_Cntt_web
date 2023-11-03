@@ -3,7 +3,10 @@ import React, { useEffect, useState } from 'react';
 import classes from './blogPage.module.css'
 import CardList from '@/components/CardList/CardList'
 import Menu from '@/components/Menu/Menu'
-
+export const metadata = {
+  title: '',
+  description: 'blog page',
+}
 const BlogCategoryPage = () => {
   const [cat, setCat] = useState('');
   const [categoryPosts, setCategoryPosts] = useState([]);
@@ -17,6 +20,9 @@ const BlogCategoryPage = () => {
       fetch(`https://do-an-cntt-web.vercel.app/api/posts?cat=${encodeURIComponent(catParam)}`)
         .then(response => response.json())
         .then(data => setCategoryPosts(data));
+    }
+    if (cat) {
+      metadata.title = cat;
     }
   }, [cat]);
   return (

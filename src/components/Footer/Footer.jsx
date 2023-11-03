@@ -1,7 +1,9 @@
 import React from 'react';
 import classes from '@/components/Footer/footer.module.css';
+import Image from 'next/image';
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
   return (
     <div className={classes.container}>
       <footer className={classes.footer}>
@@ -16,6 +18,7 @@ const Footer = () => {
             <span>Điện thoại: +123-456-7890</span>
           </div>
         </div>
+        <div className={classes.copyright}>&copy;{currentYear} Tin Công Nghệ</div> 
       </footer>
     </div>
   );
