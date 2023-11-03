@@ -4,7 +4,7 @@ import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import classes from "./adminPage.module.css";
 
-export const metadata = {
+const metadata = {
     title: 'Tài Khoản',
     description: 'admin page',
   }

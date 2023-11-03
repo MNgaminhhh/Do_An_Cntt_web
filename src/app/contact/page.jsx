@@ -3,7 +3,7 @@ import classes from './contactPage.module.css';
 import person from '@/img/logo_final.png'
 import Image from 'next/image';
 
-export const metadata = {
+const metadata = {
   title: 'Liên Hệ',
   description: 'contact',
 }

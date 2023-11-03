@@ -9,7 +9,7 @@ import 'react-quill/dist/quill.bubble.css';
 import { useSession } from "next-auth/react";
 import { useSearchParams, useRouter } from 'next/navigation';
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
-export const metadata = {
+const metadata = {
   title: 'Chỉnh Sửa Bài Viết',
   description: 'edit page',
 }

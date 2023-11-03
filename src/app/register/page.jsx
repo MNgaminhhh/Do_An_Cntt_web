@@ -3,7 +3,7 @@ import { useState } from "react";
 import classes from "./register.module.css";
 import Link from "next/link";
 
-export const metadata = {
+const metadata = {
     title: 'Đăng Ký Tài Khoản',
     description: 'register page',
   }

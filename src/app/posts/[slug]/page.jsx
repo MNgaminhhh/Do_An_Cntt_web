@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Menu from '@/components/Menu/Menu';
 import { useSession } from 'next-auth/react';
 
-export const metadata = {
+const metadata = {
   title: '',
   description: 'single page',
 }

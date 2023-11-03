@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import classes from './blogPage.module.css'
 import CardList from '@/components/CardList/CardList'
 import Menu from '@/components/Menu/Menu'
-export const metadata = {
+const metadata = {
   title: '',
   description: 'blog page',
 }

@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import classes from "./login.module.css";
 import Link from "next/link";
 
-export const metadata = {
+const metadata = {
   title: 'Đăng Nhập Tài Khoản',
   description: 'login',
 }
