@@ -3,9 +3,9 @@ import classes from './contactPage.module.css';
 import person from '@/img/logo_final.png'
 import Image from 'next/image';
 
-const metadata = {
+export const metadata = {
   title: 'Liên Hệ',
-  description: 'contact',
+  description: 'contact page',
 }
 
 const Contact = () => {

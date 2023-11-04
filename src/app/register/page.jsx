@@ -2,12 +2,10 @@
 import { useState } from "react";
 import classes from "./register.module.css";
 import Link from "next/link";
-
-const metadata = {
-    title: 'Đăng Ký Tài Khoản',
+export const metadata = {
+    title: 'Đăng Ký',
     description: 'register page',
   }
-
 const RegisterForm = () => {
     const [user, setUser] = useState({ username: "", password: "", confirmPassword: "", fullname: "" });
     const [error, setError] = useState("");

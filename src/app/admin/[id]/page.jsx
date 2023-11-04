@@ -4,11 +4,10 @@ import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import classes from "./adminPage.module.css";
 
-const metadata = {
-    title: 'Tài Khoản',
+export const metadata = {
+    title: 'Thông Tin Tài Khoản',
     description: 'admin page',
   }
-
 const AdminProfile = () => {
     const [admin, setAdmin] = useState({ username: '', full_name: '', isChangingPassword: false, password: '' });
     const [loading, setLoading] = useState(true);

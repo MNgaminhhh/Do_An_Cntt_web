@@ -8,7 +8,10 @@ import AuthProvider from '@/provider/AuthProvider'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Home',
+  title: {
+    default: 'Trang Chủ',
+    template: '%s | Tin Công Nghệ',
+  },
   description: 'home page',
 }
 

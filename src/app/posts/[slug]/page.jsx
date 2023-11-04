@@ -6,9 +6,9 @@ import Image from 'next/image';
 import Menu from '@/components/Menu/Menu';
 import { useSession } from 'next-auth/react';
 
-const metadata = {
+export const metadata = {
   title: '',
-  description: 'single page',
+  description: 'posts page',
 }
 
 const Page = () => {
@@ -83,8 +83,6 @@ const Page = () => {
       console.error('Lỗi khi gọi API xóa bài viết:', error);
     }
   };
-  
-  
   if (!post) {
     return <div>Loading...</div>;
   }

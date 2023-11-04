@@ -5,9 +5,9 @@ import { useRouter } from "next/navigation";
 import classes from "./login.module.css";
 import Link from "next/link";
 
-const metadata = {
-  title: 'Đăng Nhập Tài Khoản',
-  description: 'login',
+export const metadata = {
+  title: 'Đăng Nhập',
+  description: 'login page',
 }
 const LoginPage = () => {
   const [username, setUsername] = useState("");
