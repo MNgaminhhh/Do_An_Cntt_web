@@ -7,32 +7,35 @@ export async function GET(request) {
             status: 400,
         });
     }
-
-    const postQuery = {
-        query: "SELECT * FROM post WHERE post_ID = ?",
+    const postAdminQuery = {
+        query: "SELECT post.*, admin.username, admin.full_name FROM post INNER JOIN admin ON post.admin_ID = admin.admin_ID WHERE post.post_ID = ?",
         values: [postId],
     };
 
     try {
-        const post = await query(postQuery);
+        const postAdminData = await query(postAdminQuery);
 
-        if (post.length === 0) {
+        if (postAdminData.length === 0) {
             return new Response("Post not found", {
                 status: 404,
             });
         }
 
-        let data = JSON.stringify(post[0]);
+        let data = JSON.stringify(postAdminData[0]);
         return new Response(data, {
             status: 200,
+            headers: {
+                'Content-Type': 'application/json'
+            }
         });
     } catch (error) {
-        console.error("Error fetching post:", error);
+        console.error("Error fetching post with admin info:", error);
         return new Response("Internal Server Error", {
             status: 500,
         });
     }
 }
+
 export async function DELETE(request) {
     const postId = parseInt(request.url.split("/").pop(), 10);
     if (isNaN(postId)) {

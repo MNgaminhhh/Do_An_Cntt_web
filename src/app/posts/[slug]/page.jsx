@@ -6,11 +6,6 @@ import Image from 'next/image';
 import Menu from '@/components/Menu/Menu';
 import { useSession } from 'next-auth/react';
 
-export const metadata = {
-  title: '',
-  description: 'posts page',
-}
-
 const Page = () => {
   const router = useRouter();
   const [postId, setPostId] = useState(null);
@@ -58,9 +53,6 @@ const Page = () => {
         console.error('Error fetching admin data:', error);
       }
     };
-    if (post) {
-      metadata.title = post.title;
-    }
     fetchAdmin();
   }, [post]);
   const handleEdit = () => {

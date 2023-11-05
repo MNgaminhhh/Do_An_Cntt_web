@@ -1,21 +1,17 @@
 "use client"
-import { useState, useEffect } from "react";
-import { useSession, signOut } from "next-auth/react";
+import { useEffect, useState } from "react";
+import { useSession, signIn, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import classes from "./adminPage.module.css";
+import Link from "next/link";
 
-export const metadata = {
-    title: 'Thông Tin Tài Khoản',
-    description: 'admin page',
-  }
 const AdminProfile = () => {
     const [admin, setAdmin] = useState({ username: '', full_name: '', isChangingPassword: false, password: '' });
     const [loading, setLoading] = useState(true);
     const [passwordChanged, setPasswordChanged] = useState(false);
     const [accountDeleted, setAccountDeleted] = useState(false);
     const { data: session } = useSession();
-    const router = useRouter()
-
+    const router = useRouter();
     useEffect(() => {
         const fetchAdminInfo = async () => {
             if (session) {
@@ -36,9 +32,26 @@ const AdminProfile = () => {
                 setLoading(false);
             }
         };
-
-        fetchAdminInfo();
+        if (!session) {
+            signIn();
+        } else {
+            fetchAdminInfo();
+            setLoading(false);
+        }  
     }, [session]);
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (!session) {
+        return (
+            <div>
+                <p>Bạn cần phải đăng nhập để thực hiện chức năng này.</p>
+                <Link href="/login"><a>Đăng Nhập</a></Link> {/* Make sure to wrap the text in an <a> tag */}
+            </div>
+        );
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
