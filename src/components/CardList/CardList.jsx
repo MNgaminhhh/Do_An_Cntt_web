@@ -1,6 +1,6 @@
 "use client"
 import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation'; 
+import { useRouter } from 'next/navigation';
 import classes from './cardList.module.css';
 import Card from '@/components/card/Card';
 import Pagination from '@/components/Pagination/Pagination';
@@ -12,16 +12,14 @@ const Page = () => {
   const router = useRouter();
 
   useEffect(() => {
-
+    // Fetching all posts from your API
     fetch('https://www.mn-tech.tech/api/posts')
       .then((response) => response.json())
       .then((data) => setAllPosts(data));
   }, []);
-
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = allPosts.slice(indexOfFirstPost, indexOfLastPost);
-
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
     router.push(`/?page=${pageNumber}`, undefined, { shallow: true });
