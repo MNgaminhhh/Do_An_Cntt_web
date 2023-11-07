@@ -1,6 +1,5 @@
 "use client"
 import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import classes from './cardList.module.css';
 import Card from '@/components/card/Card';
 import Pagination from '@/components/Pagination/Pagination';
@@ -8,21 +7,34 @@ import Pagination from '@/components/Pagination/Pagination';
 const Page = () => {
   const [allPosts, setAllPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [cat, setCat] = useState('');
   const postsPerPage = 5;
-  const router = useRouter();
 
   useEffect(() => {
-    // Fetching all posts from your API
-    fetch('https://www.mn-tech.tech/api/posts')
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const catParam = urlParams.get('cat');
+    setCat(catParam);
+    const url = catParam
+      ? `https://www.mn-tech.tech/api/posts?cat=${encodeURIComponent(catParam)}&page=${currentPage}`
+      : 'https://www.mn-tech.tech/api/posts';
+
+    // Fetching posts from your API based on category and current page
+    fetch(url)
       .then((response) => response.json())
       .then((data) => setAllPosts(data));
-  }, []);
+  }, [currentPage, cat]);
+
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = allPosts.slice(indexOfFirstPost, indexOfLastPost);
+
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
-    router.push(`/?page=${pageNumber}`, undefined, { shallow: true });
+    const newQueryString = cat
+      ? `?cat=${encodeURIComponent(cat)}&page=${pageNumber}`
+      : `?page=${pageNumber}`;
+    window.history.pushState(null, '', newQueryString);
   };
 
   return (
