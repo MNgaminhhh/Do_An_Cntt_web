@@ -32,12 +32,10 @@ const AdminProfile = () => {
                 setLoading(false);
             }
         };
-        if (!session) {
-            signIn();
-        } else {
+        if (session) {
             fetchAdminInfo();
             setLoading(false);
-        }  
+        }   
     }, [session]);
     if (loading) {
         return <div>Loading...</div>;
