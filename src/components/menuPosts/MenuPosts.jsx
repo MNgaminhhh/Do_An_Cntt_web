@@ -9,16 +9,18 @@ const MenuPosts = ({withImage}) => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    fetch('https://www.mn-tech.tech/api/category')
-      .then((response) => response.json())
-      .then((data) => setCategories(data));
-    fetch('https://www.mn-tech.tech/api/posts')
-      .then((response) => response.json())
-      .then((data) => {
-        data.sort((a, b) => new Date(b.date) - new Date(a.date));
-        setPosts(data.slice(0, 5));
-      });
-  }, [withImage, setPosts, setCategories]);
+  fetch('https://www.mn-tech.tech/api/category')
+    .then((response) => response.json())
+    .then((data) => setCategories(data));
+
+  fetch('https://www.mn-tech.tech/api/posts')
+    .then((response) => response.json())
+    .then((data) => {
+      const lastFivePosts = data.sort((a, b) => a.post_ID - b.post_ID).slice(-5);
+      setPosts(lastFivePosts);
+    });
+  }, [withImage]);
+
 
   const getCategoryName = (categoryId) => {
     const category = categories.find((category) => category.category_ID === categoryId);
