@@ -16,7 +16,7 @@ const AdminProfile = () => {
         const fetchAdminInfo = async () => {
             if (session) {
                 try {
-                    const response = await fetch(`https://www.mn-tech.tech/api/admin/${session.id}`);
+                    const response = await fetch(`http://localhost:3000/api/admin/${session.id}`);
                     if (response.ok) {
                         const data = await response.json();
                         setAdmin(data);
@@ -53,7 +53,7 @@ const AdminProfile = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`https://www.mn-tech.tech/api/admin/${session.id}`, {
+            const response = await fetch(`http://localhost:3000/api/admin/${session.id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -75,7 +75,7 @@ const AdminProfile = () => {
     };
     const handleDeleteAccount = async () => {
         try {
-            const response = await fetch(`https://www.mn-tech.tech/api/admin/${session.id}`, {
+            const response = await fetch(`http://localhost:3000/api/admin/${session.id}`, {
                 method: "DELETE"
             });
 
