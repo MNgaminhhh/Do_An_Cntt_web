@@ -14,7 +14,7 @@ const BlogCategoryPage = () => {
     setCat(catParam);
 
     if (catParam) {
-      fetch(`https://www.mn-tech.tech/api/posts?cat=${encodeURIComponent(catParam)}`)
+      fetch(`http://localhost:3000/api/posts?cat=${encodeURIComponent(catParam)}`)
         .then(response => response.json())
         .then(data => setCategoryPosts(data));
     }

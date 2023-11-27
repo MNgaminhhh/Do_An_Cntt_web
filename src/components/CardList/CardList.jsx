@@ -16,8 +16,8 @@ const Page = () => {
     const catParam = urlParams.get('cat');
     setCat(catParam);
     const url = catParam
-      ? `https://www.mn-tech.tech/api/posts?cat=${encodeURIComponent(catParam)}&page=${currentPage}`
-      : 'https://www.mn-tech.tech/api/posts';
+      ? `http://localhost:3000/api/posts?cat=${encodeURIComponent(catParam)}&page=${currentPage}`
+      : 'http://localhost:3000/api/posts';
 
     // Fetching posts from your API based on category and current page
     fetch(url)

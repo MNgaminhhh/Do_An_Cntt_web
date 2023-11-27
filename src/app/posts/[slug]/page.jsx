@@ -23,7 +23,7 @@ const Page = () => {
     const fetchPost = async () => {
       if (postId) {
         try {
-          const response = await fetch(`https://www.mn-tech.tech/api/posts/${postId}`);
+          const response = await fetch(`http://localhost:3000/api/posts/${postId}`);
           if (!response.ok) {
             throw new Error('Không tìm thấy bài đăng !');
           }
@@ -43,7 +43,7 @@ const Page = () => {
   
   const handleDelete = async () => {
     try {
-      const response = await fetch(`https://www.mn-tech.tech/api/posts/${postId}`, {
+      const response = await fetch(`http://localhost:3000/api/posts/${postId}`, {
         method: 'DELETE',
       });
   

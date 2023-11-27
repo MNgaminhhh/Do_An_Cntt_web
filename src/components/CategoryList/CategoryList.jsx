@@ -8,7 +8,7 @@ const CategoryList = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    fetch('https://www.mn-tech.tech/api/category')
+    fetch('http://localhost:3000/api/category')
       .then(response => response.json())
       .then(data => setCategories(data));
   }, []);
