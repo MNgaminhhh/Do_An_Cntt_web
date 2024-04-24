@@ -20,15 +20,10 @@ admin.initializeApp({
 });
 
 export async function DELETE(req) {
-  try {
-    if (req && typeof req.json === 'function') {
       const { uid } = await req.json();
       await getAuth().deleteUser(uid);
-      console.log(`${uid} deleted successfully.`);
-    } else {
-      console.error("undefined");
-    }
-  } catch (error) {
-    console.error("Error:", error);
-  }
+      return new Response(
+        JSON.stringify({ message: "deleted successfully" }),
+        { status: 201, headers: { 'Content-Type': 'application/json' } }
+    );
 }
