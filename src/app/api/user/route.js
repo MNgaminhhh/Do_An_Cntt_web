@@ -20,6 +20,29 @@ admin.initializeApp({
     databaseURL: "https://manage-restaurant-d6e3c-default-rtdb.firebaseio.com"
 });
 
+export async function POST(request) {
+    const { email, password, userData } = request.body;
+
+    try {
+        const userCredential = await createUserWithEmailAndPassword(getAuth(), email, password);
+        const user = userCredential.user;
+        const userId = user.uid;
+
+        await admin.firestore().collection("users").doc(userId).set(userData);
+
+        return new Response(
+            JSON.stringify({ message: "successfully", userId: userId }),
+            { status: 201, headers: { 'Content-Type': 'application/json' } }
+        );
+    } catch (error) {
+        return new Response(
+            JSON.stringify({ message: "failed", error: error.message }),
+            { status: 500, headers: { 'Content-Type': 'application/json' } }
+        );
+    }
+}
+
+
 export async function DELETE(request) {
     const urlParams = new URLSearchParams(request.url.split("?")[1]);
     const uid = urlParams.get("uid");
