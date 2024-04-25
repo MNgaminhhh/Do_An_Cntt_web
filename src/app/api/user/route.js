@@ -1,4 +1,4 @@
-import { getAuth, createUserWithEmailAndPassword  } from "firebase-admin/auth";
+import { getAuth } from "firebase-admin/auth";
 import admin from "firebase-admin";
 
 const serviceAccountKey = {
@@ -26,11 +26,10 @@ export async function POST(request) {
     try {
         const userRecord = await admin.auth().createUser({email, password});
         const userId = userRecord.uid;
-
-        await admin.firestore().collection("users").doc(userId).set(userData);
-
+        const plainUserData = JSON.parse(JSON.stringify(userData));
+        await admin.firestore().collection("users").doc(userId).set(plainUserData);
         return new Response(
-            JSON.stringify({ message: "successfully", userId: userId }),
+            JSON.stringify({ message: "successfully"}),
             { status: 201, headers: { 'Content-Type': 'application/json' } }
         );
     } catch (error) {
@@ -40,6 +39,7 @@ export async function POST(request) {
         );
     }
 }
+
 
 
 
