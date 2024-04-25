@@ -21,9 +21,10 @@ admin.initializeApp({
 });
 
 export async function POST(request) {
-    const { email, password, userData } = request.body;
-
     try {
+        const requestBody = await request.json();
+        const { email, password, userData } = requestBody; 
+        
         const userRecord = await admin.auth().createUser({email, password});
         const userId = userRecord.uid;
         const plainUserData = JSON.parse(JSON.stringify(userData));
@@ -39,6 +40,8 @@ export async function POST(request) {
         );
     }
 }
+
+
 
 
 
