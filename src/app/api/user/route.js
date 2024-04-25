@@ -24,9 +24,8 @@ export async function POST(request) {
     const { email, password, userData } = request.body;
 
     try {
-        const userCredential = await createUserWithEmailAndPassword(getAuth(), email, password);
-        const user = userCredential.user;
-        const userId = user.uid;
+        const userRecord = await admin.auth().createUser({email, password});
+        const userId = userRecord.uid;
 
         await admin.firestore().collection("users").doc(userId).set(userData);
 
@@ -41,6 +40,7 @@ export async function POST(request) {
         );
     }
 }
+
 
 
 export async function DELETE(request) {
