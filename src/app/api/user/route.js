@@ -1,4 +1,4 @@
-import { getAuth } from "firebase-admin/auth";
+import { getAuth, createUserWithEmailAndPassword  } from "firebase-admin/auth";
 import admin from "firebase-admin";
 
 const serviceAccountKey = {
