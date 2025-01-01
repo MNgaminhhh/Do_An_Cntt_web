@@ -1,25 +1,26 @@
-"use client"
-import React, { useEffect, useState } from 'react';
-import classes from './cardList.module.css';
-import Card from '@/components/card/Card';
-import Pagination from '@/components/Pagination/Pagination';
+"use client";
+import React, { useEffect, useState } from "react";
+import classes from "./cardList.module.css";
+import Card from "@/components/card/Card";
+import Pagination from "@/components/Pagination/Pagination";
 
 const Page = () => {
   const [allPosts, setAllPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [cat, setCat] = useState('');
+  const [cat, setCat] = useState("");
   const postsPerPage = 5;
 
   useEffect(() => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const catParam = urlParams.get('cat');
+    const catParam = urlParams.get("cat");
+    const baseURL = process.env.NEXTAUTH_URL;
     setCat(catParam);
     const url = catParam
-      ? `https://www.mn-tech.tech/api/posts?cat=${encodeURIComponent(catParam)}&page=${currentPage}`
-      : 'https://www.mn-tech.tech/api/posts';
-
-    // Fetching posts from your API based on category and current page
+      ? `${baseURL}/api/posts?cat=${encodeURIComponent(
+          catParam
+        )}&page=${currentPage}`
+      : `${baseURL}/api/posts`;
     fetch(url)
       .then((response) => response.json())
       .then((data) => setAllPosts(data));
@@ -34,7 +35,7 @@ const Page = () => {
     const newQueryString = cat
       ? `?cat=${encodeURIComponent(cat)}&page=${pageNumber}`
       : `?page=${pageNumber}`;
-    window.history.pushState(null, '', newQueryString);
+    window.history.pushState(null, "", newQueryString);
   };
 
   return (

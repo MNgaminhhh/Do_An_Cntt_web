@@ -1,34 +1,29 @@
-"use client"
-import React, { useEffect, useState } from 'react';
-import classes from './blogPage.module.css'
-import CardList from '@/components/CardList/CardList'
-import Menu from '@/components/Menu/Menu'
+"use client";
+import React, { useEffect, useState } from "react";
+import classes from "./blogPage.module.css";
+import CardList from "@/components/CardList/CardList";
+import Menu from "@/components/Menu/Menu";
 
 const BlogCategoryPage = () => {
-  const [cat, setCat] = useState('');
+  const [cat, setCat] = useState("");
   const [categoryPosts, setCategoryPosts] = useState([]);
-
+  const baseURL = process.env.NEXTAUTH_URL;
   useEffect(() => {
     const queryString = window.location.search;
-    const catParam = new URLSearchParams(queryString).get('cat');
+    const catParam = new URLSearchParams(queryString).get("cat");
     setCat(catParam);
 
     if (catParam) {
-      fetch(`https://www.mn-tech.tech/api/posts?cat=${encodeURIComponent(catParam)}`)
-        .then(response => response.json())
-        .then(data => setCategoryPosts(data));
+      fetch(`${baseURL}/api/posts?cat=${encodeURIComponent(catParam)}`)
+        .then((response) => response.json())
+        .then((data) => setCategoryPosts(data));
     }
-
   }, [cat]);
   return (
     <div className={classes.container}>
-      <h1 className={classes.title}>{cat || 'Blog'}</h1>
+      <h1 className={classes.title}>{cat || "Blog"}</h1>
       <div className={classes.content}>
-        {cat ? (
-          <CardList posts={categoryPosts} />
-        ) : (
-          <CardList />
-        )}
+        {cat ? <CardList posts={categoryPosts} /> : <CardList />}
         <Menu />
       </div>
     </div>
